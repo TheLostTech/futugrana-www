@@ -1,0 +1,90 @@
+---
+import LanguagePicker from "./LanguagePicker.astro";
+import { localizeUrl, type Locale } from "../lib/i18n";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+const t = locale === "it"
+  ? {
+      cols: {
+        product: { title: "Prodotto", links: [
+          ["Dashboard", "/"], ["Quick Trade", "/"],
+          ["Multi-broker", "/"], ["Contabilità", "/"], ["Payout", "/"],
+        ] as [string, string][] },
+        forWhom: { title: "Per chi", links: [
+          ["Trader", "/"], ["Gestori", "/per-gestori"], ["Prop firm partner", "/"],
+        ] as [string, string][] },
+        resources: { title: "Risorse", links: [
+          ["Docs", "/docs"], ["Blog", "/blog"], ["FAQ", "/faq"], ["Status (soon)", "#"],
+        ] as [string, string][] },
+        partner: { title: "Diventa partner", links: [
+          ["Programma referral", "/partner"], ["Calcola le commissioni", "/partner#calcola"],
+        ] as [string, string][] },
+        company: { title: "Azienda", links: [
+          ["Chi siamo", "/"], ["Contatti", "/"],
+        ] as [string, string][] },
+      },
+      legal: ["Privacy", "Cookie", "Termini"],
+      legalLinks: ["/privacy", "/cookie", "/termini"],
+      copy: "© 2026 Futugrana — Tutti i diritti riservati.",
+    }
+  : {
+      cols: {
+        product: { title: "Product", links: [
+          ["Dashboard", "/"], ["Quick Trade", "/"],
+          ["Multi-broker", "/"], ["Accounting", "/"], ["Payout", "/"],
+        ] as [string, string][] },
+        forWhom: { title: "For whom", links: [
+          ["Traders", "/"], ["Managers", "/per-gestori"], ["Prop firm partners", "/"],
+        ] as [string, string][] },
+        resources: { title: "Resources", links: [
+          ["Docs", "/docs"], ["Blog", "/blog"], ["FAQ", "/faq"], ["Status (soon)", "#"],
+        ] as [string, string][] },
+        partner: { title: "Become partner", links: [
+          ["Referral program", "/partner"], ["Earnings calculator", "/partner#calcola"],
+        ] as [string, string][] },
+        company: { title: "Company", links: [
+          ["About", "/"], ["Contact", "/"],
+        ] as [string, string][] },
+      },
+      legal: ["Privacy", "Cookie", "Terms"],
+      legalLinks: ["/privacy", "/cookie", "/termini"],
+      copy: "© 2026 Futugrana — All rights reserved.",
+    };
+
+const cols = [t.cols.product, t.cols.forWhom, t.cols.resources, t.cols.partner, t.cols.company];
+---
+<footer class="bg-paper border-t border-black/8 px-8 py-16 text-ink">
+  <div class="max-w-[1400px] mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+      {cols.map((col) => (
+        <div>
+          <h4 class="text-xs uppercase tracking-widest text-ink/50 mb-4">{col.title}</h4>
+          <ul class="space-y-2 text-sm font-medium">
+            {col.links.map(([label, href]) => (
+              <li><a href={href === "#" ? "#" : localizeUrl(href, locale)} class="hover:opacity-60">{label}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <div class="border-t border-black/8 pt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div class="flex items-center gap-4 text-xs text-ink/70">
+        {t.legal.map((label, i) => (
+          <a href={localizeUrl(t.legalLinks[i], locale)} class="hover:text-ink">{label}</a>
+        ))}
+      </div>
+      <LanguagePicker currentLocale={locale} currentPath={currentPath} />
+    </div>
+
+    <p class="mt-6 text-xs text-ink/40">
+      {t.copy} <span class="opacity-70">[P.IVA da inserire]</span>
+    </p>
+  </div>
+</footer>

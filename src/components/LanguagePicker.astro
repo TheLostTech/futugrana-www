@@ -1,0 +1,24 @@
+---
+import { localizeUrl, LOCALES, type Locale } from "../lib/i18n";
+
+interface Props {
+  currentLocale: Locale;
+  currentPath: string;
+}
+
+const { currentLocale, currentPath } = Astro.props;
+---
+<div class="flex items-center gap-2 text-xs font-semibold">
+  {LOCALES.map((loc) => (
+    <a
+      href={localizeUrl(currentPath, loc)}
+      aria-current={loc === currentLocale ? "true" : "false"}
+      class:list={[
+        "px-2 py-1 rounded uppercase tracking-wider",
+        loc === currentLocale ? "bg-ink text-paper" : "text-ink/60 hover:text-ink",
+      ]}
+    >
+      {loc}
+    </a>
+  ))}
+</div>
