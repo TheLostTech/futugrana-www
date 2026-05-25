@@ -1,0 +1,83 @@
+---
+import ScenePatternA from "./ScenePatternA.astro";
+import DashboardMock from "./DashboardMock.astro";
+import { localizeUrl, type Locale } from "../lib/i18n";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const appUrl = "https://app.futugrana.com";
+
+const t = locale === "it"
+  ? {
+      toggleTrader: "Trader",
+      toggleManager: "Gestore",
+      title: "Le prop firm.<br>Come si deve.",
+      sub: "Esecuzione atomica. Numeri veri. Contabilità integrata. La piattaforma di chi tratta le prop come un lavoro.",
+      ctaPrimary: "Inizia gratis →",
+      ctaMicro: "Carichi la challenge in evaluation. È gratis. Paghi solo se passi a FUNDED.",
+      ctaSecondary: "Vedi i prezzi",
+      wordLeft: "le prop",
+      wordRight: "come si deve",
+    }
+  : {
+      toggleTrader: "Trader",
+      toggleManager: "Manager",
+      title: "Prop firms.<br>The right way.",
+      sub: "Atomic execution. Real numbers. Built-in accounting. The platform for those who treat prop firms as a job.",
+      ctaPrimary: "Start free →",
+      ctaMicro: "Load your challenge in evaluation. It's free. Pay only when it goes FUNDED.",
+      ctaSecondary: "See pricing",
+      wordLeft: "prop firms",
+      wordRight: "the right way",
+    };
+---
+<ScenePatternA
+  bgClass="bg-celeste"
+  textClass="text-ink"
+  wordsClass="text-paper"
+  eyebrow=""
+  title={t.title}
+  wordLeft={t.wordLeft}
+  wordRight={t.wordRight}
+  zIndex={10}
+>
+  <DashboardMock />
+</ScenePatternA>
+
+<div class="fixed top-[88px] left-1/2 -translate-x-1/2 z-[20] pointer-events-none" data-hero-overlay>
+  <div class="bg-ink text-paper rounded-full p-1.5 inline-flex gap-0 text-sm font-bold pointer-events-auto">
+    <span class="px-5 py-2 rounded-full bg-paper text-ink">{t.toggleTrader}</span>
+    <a href={localizeUrl("/per-gestori", locale)} class="px-5 py-2 rounded-full hover:bg-white/10">{t.toggleManager}</a>
+  </div>
+</div>
+
+<div class="fixed top-[55vh] left-1/2 -translate-x-1/2 z-[20] pointer-events-none text-center" data-hero-cta>
+  <p class="text-ink/70 text-lg max-w-xl mx-auto mb-7 font-medium pointer-events-auto" set:html={t.sub} />
+  <a href={`${appUrl}/signup`} class="inline-block px-9 py-4 bg-ink text-paper rounded-full font-bold pointer-events-auto hover:opacity-90">
+    {t.ctaPrimary}
+  </a>
+  <p class="text-[13px] text-ink/60 mt-3 pointer-events-auto">{t.ctaMicro}</p>
+  <p class="mt-2 pointer-events-auto">
+    <a href={localizeUrl("/prezzi", locale)} class="text-sm text-blu underline underline-offset-2 hover:opacity-70">{t.ctaSecondary}</a>
+  </p>
+</div>
+
+<script is:inline>
+  (function () {
+    const overlay = document.querySelector("[data-hero-overlay]");
+    const ctaBlock = document.querySelector("[data-hero-cta]");
+    if (!overlay || !ctaBlock) return;
+    function update() {
+      const hide = window.scrollY > window.innerHeight * 0.5;
+      overlay.style.opacity = hide ? "0" : "1";
+      ctaBlock.style.opacity = hide ? "0" : "1";
+      overlay.style.transition = "opacity 0.3s";
+      ctaBlock.style.transition = "opacity 0.3s";
+    }
+    document.addEventListener("scroll", update, { passive: true });
+    update();
+  })();
+</script>
