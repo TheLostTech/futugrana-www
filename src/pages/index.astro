@@ -1,7 +1,64 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
 import Hero from "../components/Hero.astro";
+import ScenePatternA from "../components/ScenePatternA.astro";
+import HedgeMock from "../components/HedgeMock.astro";
+import KpiLogMock from "../components/KpiLogMock.astro";
+import MultiBrokerMock from "../components/MultiBrokerMock.astro";
+import LedgerMock from "../components/LedgerMock.astro";
 ---
 <PageLayout title="futugrana" locale="it">
   <Hero locale="it" />
+
+  <ScenePatternA
+    bgClass="bg-verde-menta"
+    textClass="text-ink"
+    wordsClass="text-paper"
+    eyebrow="01 — anti-breach"
+    title="Niente account<br>bruciati."
+    wordLeft="hedge"
+    wordRight="atomico"
+    zIndex={11}
+  >
+    <HedgeMock />
+  </ScenePatternA>
+
+  <ScenePatternA
+    bgClass="bg-giallo"
+    textClass="text-ink"
+    wordsClass="text-ink"
+    eyebrow="02 — verità sul netto"
+    title="Il netto vero.<br>Sempre."
+    wordLeft="i numeri"
+    wordRight="veri"
+    zIndex={12}
+  >
+    <KpiLogMock />
+  </ScenePatternA>
+
+  <ScenePatternA
+    bgClass="bg-viola"
+    textClass="text-ink"
+    wordsClass="text-ink"
+    eyebrow="03 — multi-broker"
+    title="Tradovate.<br>MetaApi. ProjectX."
+    wordLeft="tutti i"
+    wordRight="broker"
+    zIndex={13}
+  >
+    <MultiBrokerMock />
+  </ScenePatternA>
+
+  <ScenePatternA
+    bgClass="bg-celeste-2"
+    textClass="text-paper"
+    wordsClass="text-paper"
+    eyebrow="04 — contabilità"
+    title="Versato. Incassato.<br>Pagato. Senza Excel."
+    wordLeft="contabilità"
+    wordRight="integrata"
+    zIndex={14}
+  >
+    <LedgerMock />
+  </ScenePatternA>
 </PageLayout>

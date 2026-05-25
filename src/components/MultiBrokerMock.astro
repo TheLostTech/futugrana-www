@@ -1,0 +1,28 @@
+---
+const props = [
+  { name: "APEX-001", provider: "TDV", status: "FUNDED" },
+  { name: "FTMO-2", provider: "META", status: "FUNDED" },
+  { name: "Topstep-A", provider: "TDV", status: "CHALLENGE" },
+  { name: "Lucid-LFF", provider: "PRJ", status: "CHALLENGE" },
+  { name: "Tradeify-1", provider: "TDV", status: "FUNDED" },
+];
+---
+<div class="w-full h-full bg-gradient-to-b from-[#2a1065] to-[#4c1d95] text-paper flex items-center justify-center p-[clamp(20px,4vw,60px)]">
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-[900px] w-full">
+    {props.map((p) => (
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+        <div class="flex items-start justify-between mb-2">
+          <span class="text-xs font-mono px-2 py-0.5 bg-white/10 rounded">{p.provider}</span>
+          <span class:list={[
+            "text-[10px] font-bold tracking-wider px-2 py-0.5 rounded",
+            p.status === "FUNDED" ? "bg-[#5dd66c]/20 text-[#5dd66c]" : "bg-[#fde047]/20 text-[#fde047]",
+          ]}>{p.status}</span>
+        </div>
+        <div class="text-lg font-black">{p.name}</div>
+      </div>
+    ))}
+    <div class="bg-white/[0.03] border-2 border-dashed border-white/20 rounded-2xl p-5 flex items-center justify-center">
+      <span class="text-sm opacity-50">+ aggiungi</span>
+    </div>
+  </div>
+</div>
