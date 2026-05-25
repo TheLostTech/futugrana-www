@@ -1,0 +1,29 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog", ({ data }) => data.locale === "it"))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<PageLayout title="Blog" description="Articoli su prop trading, hedge, e gestione operativa." locale="it">
+  <section class="bg-paper px-8 pt-32 pb-24">
+    <div class="max-w-[900px] mx-auto">
+      <h1 class="text-[clamp(56px,8vw,128px)] font-black tracking-[-0.04em] leading-[0.95] mb-12">Blog.</h1>
+      {posts.length === 0 ? (
+        <p class="text-xl text-ink/60 italic">Nessun articolo ancora. Torna presto.</p>
+      ) : (
+        <div class="space-y-8">
+          {posts.map((post) => (
+            <a href={`/blog/${post.id}`} class="block group">
+              <p class="text-xs uppercase tracking-widest text-ink/50 font-semibold mb-2">
+                {post.data.pubDate.toLocaleDateString("it-IT", { year: "numeric", month: "long", day: "numeric" })}
+              </p>
+              <h2 class="text-3xl font-black tracking-tight mb-3 group-hover:opacity-70">{post.data.title}</h2>
+              <p class="text-base text-ink/70 font-medium leading-relaxed">{post.data.description}</p>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</PageLayout>

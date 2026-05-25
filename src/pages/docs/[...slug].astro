@@ -1,0 +1,25 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import { getCollection, render, type CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const docs = await getCollection("docs");
+  return docs.map((doc) => ({ params: { slug: doc.id }, props: { doc } }));
+}
+
+interface Props { doc: CollectionEntry<"docs">; }
+const { doc } = Astro.props;
+const { Content } = await render(doc);
+---
+<PageLayout title={doc.data.title} description={doc.data.description} locale={doc.data.locale}>
+  <article class="bg-paper px-8 pt-32 pb-24">
+    <div class="max-w-[720px] mx-auto">
+      <p class="text-xs uppercase tracking-widest text-ink/50 font-semibold mb-4">{doc.data.category}</p>
+      <h1 class="text-[clamp(40px,6vw,72px)] font-black tracking-[-0.04em] leading-[0.95] mb-6">{doc.data.title}</h1>
+      <p class="text-xl text-ink/70 mb-12 font-medium leading-relaxed">{doc.data.description}</p>
+      <div class="prose prose-lg max-w-none">
+        <Content />
+      </div>
+    </div>
+  </article>
+</PageLayout>
