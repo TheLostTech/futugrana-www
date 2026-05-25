@@ -1,0 +1,26 @@
+---
+import type { Locale } from "../lib/i18n";
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const appUrl = "https://app.futugrana.com";
+
+const t = locale === "it"
+  ? {
+      title: "Pronto a trattarle come si deve?",
+      sub: "Carichi la prima challenge in 2 minuti. Niente carta di credito finché non passi a FUNDED.",
+      cta: "Inizia gratis →",
+    }
+  : {
+      title: "Ready to treat them the right way?",
+      sub: "Load the first challenge in 2 minutes. No credit card until you go FUNDED.",
+      cta: "Start free →",
+    };
+---
+<section class="bg-ink text-paper px-8 py-24 text-center relative" style="z-index: 25;">
+  <div class="max-w-[1000px] mx-auto">
+    <h2 class="text-[clamp(48px,7vw,120px)] font-black tracking-[-0.04em] leading-none mb-8" set:html={t.title} />
+    <p class="text-xl opacity-80 max-w-2xl mx-auto mb-10 font-medium">{t.sub}</p>
+    <a href={`${appUrl}/signup`} class="inline-block px-12 py-5 bg-paper text-ink rounded-full font-black text-lg hover:opacity-90">{t.cta}</a>
+  </div>
+</section>

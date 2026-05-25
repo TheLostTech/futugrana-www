@@ -1,0 +1,34 @@
+---
+import type { Locale } from "../lib/i18n";
+
+interface Props {
+  locale: Locale;
+  numbers?: { propFirms?: string; movementsTracked?: string };
+}
+
+const { locale, numbers = {} } = Astro.props;
+
+const propFirms = numbers.propFirms ?? "[N]";
+const movementsTracked = numbers.movementsTracked ?? "[€N]";
+
+const labels = locale === "it"
+  ? { row1: "funziona con le prop firm che usi", propFirmsLabel: "prop firm supportate", brokersLabel: "provider broker connessi", movementsLabel: "di movimenti tracciati" }
+  : { row1: "works with the prop firms you use", propFirmsLabel: "prop firms supported", brokersLabel: "broker providers connected", movementsLabel: "in movements tracked" };
+
+const firms = ["APEX", "FTMO", "Topstep", "Lucid", "Tradeify", "MyForexFunds", "The Funded Trader"];
+---
+<section class="bg-paper px-8 py-24 relative" style="z-index: 25;">
+  <div class="max-w-[1200px] mx-auto text-center">
+    <p class="text-xs uppercase tracking-[0.3em] text-ink/40 mb-6">{labels.row1}</p>
+    <div class="flex flex-wrap gap-x-8 gap-y-4 justify-center items-center opacity-50 mb-10">
+      {firms.map((f) => <span class="text-lg font-black tracking-tight">{f}</span>)}
+    </div>
+    <div class="flex flex-wrap gap-x-8 gap-y-2 justify-center text-sm font-bold">
+      <span>{propFirms} {labels.propFirmsLabel}</span>
+      <span class="opacity-40">·</span>
+      <span>3 {labels.brokersLabel}</span>
+      <span class="opacity-40">·</span>
+      <span>{movementsTracked} {labels.movementsLabel}</span>
+    </div>
+  </div>
+</section>
