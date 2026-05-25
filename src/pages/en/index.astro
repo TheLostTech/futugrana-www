@@ -1,0 +1,32 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import Hero from "../../components/Hero.astro";
+import ScenePatternA from "../../components/ScenePatternA.astro";
+import HedgeMock from "../../components/HedgeMock.astro";
+import KpiLogMock from "../../components/KpiLogMock.astro";
+import MultiBrokerMock from "../../components/MultiBrokerMock.astro";
+import LedgerMock from "../../components/LedgerMock.astro";
+import FlowSection from "../../components/FlowSection.astro";
+import PricingCards from "../../components/PricingCards.astro";
+import TrustRow from "../../components/TrustRow.astro";
+import PreFooterCTA from "../../components/PreFooterCTA.astro";
+---
+<PageLayout title="futugrana" locale="en">
+  <Hero locale="en" />
+  <ScenePatternA bgClass="bg-verde-menta" eyebrow="01 — anti-breach" title="No accounts<br>burned." wordLeft="hedge" wordRight="atomic" zIndex={11}>
+    <HedgeMock />
+  </ScenePatternA>
+  <ScenePatternA bgClass="bg-giallo" eyebrow="02 — real net" title="The real net.<br>Always." wordLeft="the numbers" wordRight="real" zIndex={12}>
+    <KpiLogMock />
+  </ScenePatternA>
+  <ScenePatternA bgClass="bg-viola" eyebrow="03 — multi-broker" title="Tradovate.<br>MetaApi. ProjectX." wordLeft="all" wordRight="brokers" zIndex={13}>
+    <MultiBrokerMock />
+  </ScenePatternA>
+  <ScenePatternA bgClass="bg-celeste-2" textClass="text-paper" eyebrow="04 — accounting" title="Paid in. Cashed out.<br>Paid. No Excel." wordLeft="accounting" wordRight="built-in" zIndex={14}>
+    <LedgerMock />
+  </ScenePatternA>
+  <FlowSection locale="en" />
+  <PricingCards locale="en" />
+  <TrustRow locale="en" />
+  <PreFooterCTA locale="en" />
+</PageLayout>

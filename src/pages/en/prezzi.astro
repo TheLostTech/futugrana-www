@@ -1,0 +1,45 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import PricingCards from "../../components/PricingCards.astro";
+import EnPlaceholderBanner from "../../components/EnPlaceholderBanner.astro";
+
+const faqs = [
+  { q: "Quando inizio a pagare?", a: "Solo quando la tua challenge passa a FUNDED. Durante l'evaluation è tutto gratis." },
+  { q: "Posso cambiare piano?", a: "Sì, in qualsiasi momento dalla dashboard." },
+  { q: "Cosa succede se faccio breach?", a: "Esci dal piano, smetti di pagare. Lo slot si libera." },
+  { q: "Quali metodi di pagamento accettate?", a: "Carta di credito (Stripe) e SEPA." },
+  { q: "C'è un trial alternativo?", a: "Il modello evaluation = trial." },
+];
+---
+<PageLayout title="Pricing" description="Three plans for retail traders, a fourth for managers." locale="en">
+  <EnPlaceholderBanner />
+  <section class="bg-paper px-8 pt-32 pb-12">
+    <div class="max-w-[1200px] mx-auto text-center">
+      <h1 class="text-[clamp(56px,8vw,128px)] font-black tracking-[-0.04em] leading-[0.95] mb-6">Prezzi.</h1>
+      <p class="text-xl text-ink/60 max-w-2xl mx-auto font-medium">
+        Paghi solo quando la tua challenge passa a FUNDED. Evaluation sempre gratis.
+      </p>
+    </div>
+  </section>
+
+  <PricingCards locale="en" />
+
+  <section class="bg-paper px-8 py-24">
+    <div class="max-w-[760px] mx-auto">
+      <h2 class="text-[clamp(40px,5vw,72px)] font-black tracking-[-0.04em] leading-[0.95] mb-12 text-center">
+        Domande frequenti.
+      </h2>
+      <div class="space-y-4">
+        {faqs.map((f) => (
+          <details class="bg-ink/[0.03] rounded-2xl p-6 cursor-pointer group">
+            <summary class="font-bold text-lg list-none flex justify-between items-center">
+              <span>{f.q}</span>
+              <span class="text-2xl group-open:rotate-45 transition-transform">+</span>
+            </summary>
+            <p class="text-base opacity-80 mt-4 font-medium leading-relaxed">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</PageLayout>
