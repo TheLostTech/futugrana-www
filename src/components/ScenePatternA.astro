@@ -1,0 +1,76 @@
+---
+interface Props {
+  bgClass: string;
+  textClass?: string;
+  wordsClass?: string;
+  eyebrow: string;
+  title: string;
+  wordLeft: string;
+  wordRight: string;
+  zIndex: number;
+}
+const {
+  bgClass,
+  textClass = "text-ink",
+  wordsClass = "text-paper",
+  eyebrow,
+  title,
+  wordLeft,
+  wordRight,
+  zIndex,
+} = Astro.props;
+---
+<section
+  data-pattern-a
+  class="relative h-[350vh]"
+  style={`z-index: ${zIndex};`}
+>
+  <div class:list={["sticky top-0 h-screen overflow-hidden flex items-center justify-center", bgClass]}>
+    <p class:list={["absolute top-32 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.3em] font-semibold opacity-50", textClass]}>
+      {eyebrow}
+    </p>
+
+    <h2
+      data-title
+      class:list={[
+        "absolute top-[38%] left-1/2 -translate-x-1/2 -translate-y-1/2",
+        "text-center leading-[0.95] tracking-[-0.04em] font-black",
+        "text-[clamp(64px,10vw,160px)]",
+        textClass,
+      ]}
+      set:html={title}
+    />
+
+    <span
+      data-word-left
+      class:list={[
+        "absolute top-[4%] left-[3%]",
+        "text-[clamp(100px,17vw,280px)] leading-[0.85] tracking-[-0.05em] font-black lowercase",
+        "opacity-0 pointer-events-none z-[4]",
+        wordsClass,
+      ]}
+    >{wordLeft}</span>
+
+    <span
+      data-word-right
+      class:list={[
+        "absolute bottom-[4%] right-[3%]",
+        "text-[clamp(100px,17vw,280px)] leading-[0.85] tracking-[-0.05em] font-black lowercase",
+        "opacity-0 pointer-events-none z-[4]",
+        wordsClass,
+      ]}
+    >{wordRight}</span>
+
+    <div
+      data-card
+      class="absolute left-1/2 -translate-x-1/2 overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.25)] z-[3]"
+      style="width: 50vw; height: 55vh; bottom: -8%; border-radius: 24px;"
+    >
+      <slot />
+    </div>
+  </div>
+</section>
+
+<script>
+  import "../scripts/scroll-driver";
+</script>
