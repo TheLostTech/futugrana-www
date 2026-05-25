@@ -9,7 +9,16 @@ import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://futugrana.com",
   output: 'static',
+
+  i18n: {
+    defaultLocale: "it",
+    locales: ["it", "en"],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
 
   vite: {
     plugins: [tailwindcss()]
