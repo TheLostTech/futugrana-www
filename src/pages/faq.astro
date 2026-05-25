@@ -1,0 +1,44 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+
+const categories = [
+  { title: "Pricing & trial", questions: [
+    { q: "Quando inizio a pagare?", a: "Solo quando la challenge passa a FUNDED." },
+  ]},
+  { title: "Setup tecnico", questions: [
+    { q: "Posso collegare più broker?", a: "Sì. Tradovate, MetaApi (MT4/MT5) e ProjectX, anche tutti insieme." },
+  ]},
+  { title: "Funded & payout", questions: [
+    { q: "Come funziona il passaggio FUNDED?", a: "Quando la tua evaluation passa, la prop firm ti dà un nuovo account ID. Il sistema lo rileva e attiva lo slot pagante." },
+  ]},
+  { title: "Supporto", questions: [
+    { q: "Come posso contattarvi?", a: "Email a support@futugrana.com, Telegram via la community ufficiale." },
+  ]},
+];
+---
+<PageLayout title="FAQ" description="Domande frequenti su futugrana." locale="it">
+  <section class="bg-paper px-8 pt-32 pb-24">
+    <div class="max-w-[800px] mx-auto">
+      <h1 class="text-[clamp(56px,8vw,128px)] font-black tracking-[-0.04em] leading-[0.95] mb-16">FAQ.</h1>
+      {categories.map((cat) => (
+        <div class="mb-12">
+          <h2 class="text-xs uppercase tracking-[0.3em] text-ink/50 mb-6 font-semibold">{cat.title}</h2>
+          <div class="space-y-3">
+            {cat.questions.map((f) => (
+              <details class="bg-ink/[0.03] rounded-2xl p-6 group">
+                <summary class="font-bold text-lg list-none flex justify-between items-center cursor-pointer">
+                  <span>{f.q}</span>
+                  <span class="text-2xl group-open:rotate-45 transition-transform">+</span>
+                </summary>
+                <p class="text-base opacity-80 mt-4 font-medium leading-relaxed">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      ))}
+      <p class="text-base text-ink/50 italic mt-12">
+        Altre domande verranno aggiunte dopo i primi clienti. Apri una issue su GitHub o scrivi a support@futugrana.com.
+      </p>
+    </div>
+  </section>
+</PageLayout>
