@@ -1,0 +1,72 @@
+---
+import { localizeUrl, type Locale } from "../lib/i18n";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const appUrl = "https://app.futugrana.com";
+
+const t = locale === "it"
+  ? {
+      cta: "Inizia gratis →",
+      steps: [
+        { title: "Connetti", desc: "Colleghi i tuoi broker in 2 minuti. Tradovate via OAuth, MetaApi col token. Niente credenziali sparse in chat.", visual: { meta: "step 1 — onboarding", title: "Collega il broker", icon: "🔗" } },
+        { title: "Carica",   desc: "Carichi l'ID della tua challenge in evaluation. È gratis. Lo slot si attiva solo se passa a FUNDED.", visual: { meta: "step 2 — setup", title: "Carica la challenge", icon: "📥" } },
+        { title: "Funded",   desc: "Quando l'evaluation passa, il sistema rileva il nuovo ID. Lo slot si attiva. Tu continui dove avevi lasciato.", visual: { meta: "step 3 — go-live", title: "Quick Trade attivo", icon: "⚡" } },
+        { title: "Incassa",  desc: "Payout dalla dashboard. Atterra sul wallet che hai scelto. Tracciato come movimento contabile.", visual: { meta: "step 4 — payout", title: "Soldi sul wallet", icon: "💰" } },
+      ],
+    }
+  : {
+      cta: "Start free →",
+      steps: [
+        { title: "Connect", desc: "Connect your brokers in 2 minutes. Tradovate via OAuth, MetaApi with tokens. No credentials lost in chat.", visual: { meta: "step 1 — onboarding", title: "Connect the broker", icon: "🔗" } },
+        { title: "Load",    desc: "Upload your evaluation challenge ID. It's free. The slot only activates when the challenge goes FUNDED.", visual: { meta: "step 2 — setup", title: "Load the challenge", icon: "📥" } },
+        { title: "Funded",  desc: "When evaluation passes, the system detects the new ID. The slot activates. You pick up where you left off.", visual: { meta: "step 3 — go-live", title: "Quick Trade live", icon: "⚡" } },
+        { title: "Cash",    desc: "Payout from the dashboard. Lands on the wallet you chose. Tracked as a bookkeeping move.", visual: { meta: "step 4 — payout", title: "Money on wallet", icon: "💰" } },
+      ],
+    };
+---
+<section data-flow class="relative h-[500vh] bg-blu" style="z-index: 15;">
+  <div class="sticky top-0 h-screen text-paper grid grid-cols-1 md:grid-cols-2 items-center px-[clamp(40px,8vw,140px)] gap-15">
+    <div class="flex flex-col gap-6">
+      <div class="flex flex-col gap-3.5">
+        {t.steps.map((s, i) => (
+          <span
+            data-flow-title
+            data-active={i === 0 ? "true" : "false"}
+            class="text-[clamp(48px,7vw,100px)] leading-[0.95] tracking-[-0.04em] font-black transition-colors duration-500 data-[active=true]:text-paper data-[active=false]:text-paper/[0.22]"
+          >{s.title}</span>
+        ))}
+      </div>
+      <div class="min-h-[100px] max-w-[460px]">
+        {t.steps.map((s, i) => (
+          <p data-flow-desc class="text-lg leading-snug font-medium opacity-90 mb-7" style={i === 0 ? "display:block" : "display:none"}>{s.desc}</p>
+        ))}
+        <a href={`${appUrl}/signup`} class="inline-block px-9 py-4 border-[1.5px] border-paper rounded-full font-bold hover:bg-paper hover:text-blu transition-colors">
+          {t.cta}
+        </a>
+      </div>
+    </div>
+
+    <div class="relative h-[75vh] rounded-3xl overflow-hidden bg-black/20">
+      {t.steps.map((s, i) => (
+        <div
+          data-flow-slide
+          data-position={i === 0 ? "active" : "next"}
+          class="absolute inset-0 flex items-center justify-center p-[6%] transition-[transform,opacity] duration-700 ease-[cubic-bezier(0.65,0,0.25,1)] opacity-0
+                 data-[position=active]:opacity-100 data-[position=active]:translate-y-0
+                 data-[position=next]:translate-y-full
+                 data-[position=prev]:-translate-y-full"
+        >
+          <div class="w-full h-full bg-paper rounded-2xl p-9 text-ink flex flex-col gap-5">
+            <span class="text-xs uppercase tracking-widest text-ink/50 font-semibold">{s.visual.meta}</span>
+            <h4 class="text-2xl font-black tracking-tight">{s.visual.title}</h4>
+            <div class="flex-1 bg-celeste rounded-2xl flex items-center justify-center text-[clamp(80px,12vw,140px)]">{s.visual.icon}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

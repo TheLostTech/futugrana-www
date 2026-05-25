@@ -1,21 +1,18 @@
-import { patternAFrame, sectionProgress } from "../lib/scroll-math";
+import { patternAFrame, sectionProgress, clamp } from "../lib/scroll-math";
 
 function updatePatternASection(section: HTMLElement) {
   const rect = section.getBoundingClientRect();
   const vh = window.innerHeight;
-  const total = section.offsetHeight;
   const progress = sectionProgress({
     rectTop: rect.top,
-    sectionHeight: total,
+    sectionHeight: section.offsetHeight,
     viewportHeight: vh,
   });
   const f = patternAFrame(progress);
-
   const card = section.querySelector<HTMLElement>("[data-card]");
   const title = section.querySelector<HTMLElement>("[data-title]");
   const wL = section.querySelector<HTMLElement>("[data-word-left]");
   const wR = section.querySelector<HTMLElement>("[data-word-right]");
-
   if (card) {
     card.style.width = f.cardWidth + "vw";
     card.style.height = f.cardHeight + "vh";
@@ -36,8 +33,35 @@ function updatePatternASection(section: HTMLElement) {
   }
 }
 
+function updateFlowSection(section: HTMLElement) {
+  const rect = section.getBoundingClientRect();
+  const vh = window.innerHeight;
+  const progress = sectionProgress({
+    rectTop: rect.top,
+    sectionHeight: section.offsetHeight,
+    viewportHeight: vh,
+  });
+  const titles = section.querySelectorAll<HTMLElement>("[data-flow-title]");
+  const descs = section.querySelectorAll<HTMLElement>("[data-flow-desc]");
+  const slides = section.querySelectorAll<HTMLElement>("[data-flow-slide]");
+  const N = titles.length;
+  if (N === 0) return;
+  const step = clamp(Math.floor(progress * N), 0, N - 1);
+
+  titles.forEach((t, i) => {
+    t.dataset.active = i === step ? "true" : "false";
+  });
+  descs.forEach((d, i) => {
+    d.style.display = i === step ? "block" : "none";
+  });
+  slides.forEach((s, i) => {
+    s.dataset.position = i === step ? "active" : i < step ? "prev" : "next";
+  });
+}
+
 function update() {
   document.querySelectorAll<HTMLElement>("[data-pattern-a]").forEach(updatePatternASection);
+  document.querySelectorAll<HTMLElement>("[data-flow]").forEach(updateFlowSection);
 }
 
 let ticking = false;
