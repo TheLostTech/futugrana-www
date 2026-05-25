@@ -1,0 +1,50 @@
+---
+import "../styles/globals.css";
+import type { Locale } from "../lib/i18n";
+
+interface Props {
+  title: string;
+  description?: string;
+  locale?: Locale;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = "La piattaforma per chi tratta le prop firm come un lavoro.",
+  locale = "it",
+  ogImage = "/og-default.png",
+} = Astro.props;
+
+const siteName = "futugrana";
+const fullTitle = title === siteName ? title : `${title} · ${siteName}`;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+---
+<!doctype html>
+<html lang={locale}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="canonical" href={canonicalUrl} />
+
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content={locale === "it" ? "it_IT" : "en_US"} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={new URL(ogImage, Astro.site).toString()} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:site_name" content={siteName} />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={new URL(ogImage, Astro.site).toString()} />
+</head>
+<body>
+  <slot />
+</body>
+</html>
