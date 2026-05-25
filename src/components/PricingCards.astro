@@ -1,0 +1,88 @@
+---
+import { localizeUrl, type Locale } from "../lib/i18n";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const appUrl = "https://app.futugrana.com";
+
+interface Card {
+  name: string;
+  price: string;
+  sub: string;
+  bullets: string[];
+  bg: string;
+  featured?: boolean;
+  isContact?: boolean;
+}
+
+const t = locale === "it"
+  ? {
+      title: "Scegli il tuo piano.",
+      sub: "Tutti i piani includono dashboard, Quick Trade, multi-broker, contabilità, payout. L'evaluation è sempre gratis — paghi solo quando la challenge passa a FUNDED.",
+      mostChosen: "PIÙ SCELTO",
+      contactCta: "Scopri di più →",
+      startCta: "Inizia gratis →",
+      perMonth: "/mese",
+      cards: [
+        { name: "Solo",    price: "€150", sub: "1 slot · per chi inizia", bullets: ["1 challenge gestita in parallelo", "Dashboard, Quick Trade, multi-broker", "Contabilità + payout integrati", "Evaluation sempre gratis"], bg: "bg-celeste" },
+        { name: "Team",    price: "€300", sub: "3 slot · per chi gira più prop", bullets: ["3 challenge in parallelo", "+ tutto del Solo", "Multi-prop in 1 dashboard"], bg: "bg-giallo", featured: true },
+        { name: "Squadra", price: "€400", sub: "5 slot · per chi vive di prop", bullets: ["5 challenge in parallelo", "+ tutto del Team", "Supporto prioritario"], bg: "bg-viola" },
+        { name: "Per Gestori", price: "Contattaci", sub: "Gestisci una squadra di trader", bullets: ["Multi-trader con scoping per ognuno", "Dashboard aggregata", "Pricing concordato in base a trader e slot necessari"], bg: "bg-blu text-paper", isContact: true },
+      ] as Card[],
+    }
+  : {
+      title: "Choose your plan.",
+      sub: "All plans include dashboard, Quick Trade, multi-broker, accounting, payout. Evaluation is always free — you pay only when the challenge goes FUNDED.",
+      mostChosen: "MOST CHOSEN",
+      contactCta: "Learn more →",
+      startCta: "Start free →",
+      perMonth: "/month",
+      cards: [
+        { name: "Solo",    price: "€150", sub: "1 slot · for beginners", bullets: ["1 challenge managed in parallel", "Dashboard, Quick Trade, multi-broker", "Built-in accounting + payout", "Evaluation always free"], bg: "bg-celeste" },
+        { name: "Team",    price: "€300", sub: "3 slots · for multi-prop traders", bullets: ["3 challenges in parallel", "+ everything in Solo", "Multi-prop in 1 dashboard"], bg: "bg-giallo", featured: true },
+        { name: "Squadra", price: "€400", sub: "5 slots · for full-time prop", bullets: ["5 challenges in parallel", "+ everything in Team", "Priority support"], bg: "bg-viola" },
+        { name: "For Managers", price: "Contact us", sub: "Manage a team of traders", bullets: ["Multi-trader scoping per user", "Aggregated dashboard", "Custom pricing based on traders & slots needed"], bg: "bg-blu text-paper", isContact: true },
+      ] as Card[],
+    };
+---
+<section class="relative bg-paper px-8 py-24" style="z-index: 25;">
+  <div class="max-w-[1400px] mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(48px,6vw,96px)] font-black tracking-[-0.04em] leading-none mb-6">{t.title}</h2>
+      <p class="text-base text-ink/60 max-w-2xl mx-auto" set:html={t.sub} />
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {t.cards.map((c) => (
+        <div class:list={["relative rounded-3xl p-10 flex flex-col gap-5", c.bg]}>
+          {c.featured && (
+            <div class="absolute -top-3 right-6 px-3 py-1 bg-ink text-paper text-[10px] font-black tracking-widest rounded-full">{t.mostChosen}</div>
+          )}
+          <div>
+            <h3 class="text-3xl font-black mb-1">{c.name}</h3>
+            <p class="text-sm opacity-80 font-medium">{c.sub}</p>
+          </div>
+          <div class="flex items-baseline gap-1">
+            <span class="text-5xl font-black tracking-tight">{c.price}</span>
+            {!c.isContact && <span class="text-base opacity-70 font-semibold">{t.perMonth}</span>}
+          </div>
+          <ul class="space-y-2 flex-1 text-sm font-medium opacity-90">
+            {c.bullets.map((b) => <li class="flex items-start gap-2"><span>✓</span><span>{b}</span></li>)}
+          </ul>
+          <a
+            href={c.isContact ? localizeUrl("/per-gestori", locale) : `${appUrl}/signup?plan=${c.name.toLowerCase()}`}
+            class:list={[
+              "inline-block text-center px-6 py-3 rounded-full font-bold text-sm transition-opacity hover:opacity-90",
+              c.isContact ? "bg-paper text-blu" : c.bg.includes("blu") ? "bg-paper text-ink" : "bg-ink text-paper",
+            ]}
+          >
+            {c.isContact ? t.contactCta : t.startCta}
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
