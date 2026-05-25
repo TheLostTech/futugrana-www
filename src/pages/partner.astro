@@ -1,0 +1,108 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import CommissionCalculator from "../components/CommissionCalculator.tsx";
+
+const appUrl = "https://app.futugrana.com";
+const steps = [
+  { num: "01", title: "Registrati come promoter", desc: "Account gratuito. Ottieni un link di referral personale." },
+  { num: "02", title: "Condividi il link", desc: "Sui tuoi canali (Telegram, social, DM). Chi clicca e si registra è tracciato come tuo." },
+  { num: "03", title: "Incassa", desc: "Commissione ricorrente quando il referral attiva uno slot pagante. Bonifico mensile sopra €50." },
+];
+const tiers = [
+  { label: "1-5 referral attivi", pct: "[%]", duration: "per sempre finché il referral paga", min: "€50/mese" },
+  { label: "6-20 referral attivi", pct: "[%]", duration: "per sempre", min: "€50/mese" },
+  { label: "20+ referral attivi", pct: "[%] + bonus volume", duration: "per sempre + bonus volume", min: "€50/mese" },
+];
+---
+<PageLayout title="Diventa partner" description="Porta un trader. Incassa con lui." locale="it">
+  <section class="bg-blu text-paper px-8 py-32 relative" style="z-index: 10;">
+    <div class="max-w-[1100px] mx-auto text-center">
+      <p class="text-xs uppercase tracking-[0.3em] opacity-50 mb-6">Programma referral</p>
+      <h1 class="text-[clamp(56px,9vw,140px)] font-black tracking-[-0.04em] leading-[0.95] mb-8">
+        Porta un trader.<br>Incassa con lui.
+      </h1>
+      <p class="text-xl opacity-80 max-w-2xl mx-auto mb-12 font-medium">
+        Promuovi futugrana ai trader che conosci. Quando uno di loro passa a FUNDED e attiva uno slot, prendi una commissione ricorrente.
+      </p>
+      <a href={`${appUrl}/signup?role=promoter`} class="inline-block px-9 py-4 bg-paper text-blu rounded-full font-bold hover:opacity-90">
+        Diventa partner →
+      </a>
+    </div>
+  </section>
+
+  <section class="bg-paper px-8 py-24 relative" style="z-index: 20;">
+    <div class="max-w-[1100px] mx-auto">
+      <h2 class="text-[clamp(40px,5vw,72px)] font-black tracking-[-0.04em] leading-[0.95] mb-16 text-center">
+        Come funziona.
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {steps.map((s) => (
+          <div class="bg-celeste rounded-3xl p-8">
+            <p class="text-xs uppercase tracking-widest opacity-50 mb-4 font-semibold">{s.num}</p>
+            <h3 class="text-2xl font-black tracking-tight mb-3">{s.title}</h3>
+            <p class="text-base opacity-80 font-medium leading-snug">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-ink/5 px-8 py-24 relative" style="z-index: 20;">
+    <div class="max-w-[1100px] mx-auto">
+      <h2 class="text-[clamp(40px,5vw,72px)] font-black tracking-[-0.04em] leading-[0.95] mb-4 text-center">
+        Commissioni.
+      </h2>
+      <p class="text-base text-ink/60 text-center mb-12 max-w-2xl mx-auto font-medium">
+        Percentuali del MRR (Monthly Recurring Revenue) del referral. Tracciate dal dashboard, pagate mensilmente sopra soglia.
+      </p>
+      <div class="bg-paper rounded-3xl overflow-hidden">
+        <table class="w-full">
+          <thead class="bg-ink text-paper">
+            <tr>
+              <th class="px-6 py-4 text-left text-xs uppercase tracking-widest font-semibold">Tier promoter</th>
+              <th class="px-6 py-4 text-left text-xs uppercase tracking-widest font-semibold">Commissione</th>
+              <th class="px-6 py-4 text-left text-xs uppercase tracking-widest font-semibold">Durata</th>
+              <th class="px-6 py-4 text-left text-xs uppercase tracking-widest font-semibold">Min payout</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-ink/10">
+            {tiers.map((t) => (
+              <tr>
+                <td class="px-6 py-4 text-sm font-bold">{t.label}</td>
+                <td class="px-6 py-4 text-sm font-black">{t.pct} MRR</td>
+                <td class="px-6 py-4 text-sm opacity-80">{t.duration}</td>
+                <td class="px-6 py-4 text-sm font-semibold">{t.min}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-ink/40 text-center mt-6 font-mono">
+        ⚠ Percentuali da decidere prima del lancio. Placeholder per ora.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-paper px-8 py-24 relative" style="z-index: 20;">
+    <div class="max-w-[1100px] mx-auto">
+      <CommissionCalculator client:load />
+    </div>
+  </section>
+
+  <section class="bg-giallo px-8 py-16 relative" style="z-index: 20;">
+    <div class="max-w-[1100px] mx-auto text-center">
+      <p class="text-2xl font-black tracking-tight max-w-2xl mx-auto leading-tight">
+        I primi 100 promoter hanno commissione <em class="not-italic underline decoration-4 underline-offset-4">bloccata al tier massimo</em> per sempre.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-ink text-paper px-8 py-24 text-center relative" style="z-index: 20;">
+    <h2 class="text-[clamp(40px,5vw,72px)] font-black tracking-[-0.04em] leading-[0.95] mb-10">
+      Pronto a partire?
+    </h2>
+    <a href={`${appUrl}/signup?role=promoter`} class="inline-block px-9 py-4 bg-paper text-ink rounded-full font-bold hover:opacity-90">
+      Diventa partner →
+    </a>
+  </section>
+</PageLayout>
