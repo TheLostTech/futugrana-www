@@ -2,6 +2,9 @@
 interface Props {
   bgClass: string;
   textClass?: string;
+  titleClass?: string;
+  eyebrow?: string;
+  title?: string;
   wordTop: string;
   wordBottom: string;
   zIndex: number;
@@ -9,6 +12,9 @@ interface Props {
 const {
   bgClass,
   textClass = "text-paper",
+  titleClass = "text-ink",
+  eyebrow,
+  title,
   wordTop,
   wordBottom,
   zIndex,
@@ -23,6 +29,24 @@ const {
     <div class="absolute inset-0 z-[1]">
       <slot />
     </div>
+
+    {eyebrow && (
+      <p class:list={["absolute top-32 left-1/2 -translate-x-1/2 z-[5] text-xs uppercase tracking-[0.3em] font-semibold opacity-60", titleClass]}>
+        {eyebrow}
+      </p>
+    )}
+
+    {title && (
+      <h2
+        class:list={[
+          "absolute top-[38%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-[5]",
+          "text-center leading-[0.95] tracking-[-0.04em] font-black",
+          "text-[clamp(32px,5vw,80px)]",
+          titleClass,
+        ]}
+        set:html={title}
+      />
+    )}
 
     <span
       class:list={[

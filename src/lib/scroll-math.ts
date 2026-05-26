@@ -38,8 +38,12 @@ export function patternAFrame(progress: number): PatternAFrame {
   const cardBottom = lerp(-8, 0, growT);
   const cardRadius = lerp(24, 0, growT);
 
-  const titleY = -growT * 250;
-  const titleOpacity = clamp(1 - growT * 1.4, 0, 1);
+  // Title stays fully visible through the whole scene (no fade) with a small
+  // upward parallax. Previous behavior faded it out to make room for ghost
+  // background words; with words now muted to 4-6% the title is the only
+  // readable heading and must stay put.
+  const titleY = -growT * 40;
+  const titleOpacity = 1;
 
   const wordT = clamp((progress - 0.30) / 0.70, 0, 1);
   const wordsOpacity = wordT;
