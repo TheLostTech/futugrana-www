@@ -14,30 +14,30 @@ const t = locale === "it"
   ? {
       toggleTrader: "Trader",
       toggleManager: "Gestore",
-      title: "Le prop firm.<br>Come si deve.",
-      sub: "Esecuzione atomica. Numeri veri. Contabilità integrata. La piattaforma di chi tratta le prop come un lavoro.",
+      title: "Automazione operativa<br>per trader futures.",
+      sub: "Sincronizzazione operativa, multi-broker e gestione event-driven in tempo reale. Il controllo resta al trader. L'infrastruttura pensa al coordinamento.",
       ctaPrimary: "Inizia gratis →",
-      ctaMicro: "Carichi la challenge in evaluation. È gratis. Paghi solo se passi a FUNDED.",
-      ctaSecondary: "Vedi i prezzi",
-      wordLeft: "le prop",
-      wordRight: "come si deve",
+      ctaMicro: "Provala gratis. Il piano si attiva solo sugli account funded.",
+      ctaSecondary: "Scopri la piattaforma",
+      wordLeft: "infrastruttura",
+      wordRight: "operativa",
     }
   : {
       toggleTrader: "Trader",
       toggleManager: "Manager",
-      title: "Prop firms.<br>The right way.",
-      sub: "Atomic execution. Real numbers. Built-in accounting. The platform for those who treat prop firms as a job.",
+      title: "Operational automation<br>for futures traders.",
+      sub: "Operational sync, multi-broker and event-driven management in real time. Trading decisions stay with the trader. The infrastructure handles coordination.",
       ctaPrimary: "Start free →",
-      ctaMicro: "Load your challenge in evaluation. It's free. Pay only when it goes FUNDED.",
-      ctaSecondary: "See pricing",
-      wordLeft: "prop firms",
-      wordRight: "the right way",
+      ctaMicro: "Try it free. The plan activates only on funded accounts.",
+      ctaSecondary: "Explore the platform",
+      wordLeft: "operational",
+      wordRight: "infrastructure",
     };
 ---
 <ScenePatternA
   bgClass="bg-celeste"
   textClass="text-ink"
-  wordsClass="text-paper"
+  wordsClass="text-ink/[0.04]"
   eyebrow=""
   title={t.title}
   wordLeft={t.wordLeft}
@@ -61,7 +61,7 @@ const t = locale === "it"
   </a>
   <p class="text-[13px] text-ink/60 mt-3 pointer-events-auto">{t.ctaMicro}</p>
   <p class="mt-2 pointer-events-auto">
-    <a href={localizeUrl("/prezzi", locale)} class="text-sm text-blu underline underline-offset-2 hover:opacity-70">{t.ctaSecondary}</a>
+    <a href={localizeUrl("/prezzi", locale)} class="text-sm text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors">{t.ctaSecondary}</a>
   </p>
 </div>
 

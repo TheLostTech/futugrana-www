@@ -1,5 +1,9 @@
 ---
 import { localizeUrl, type Locale } from "../lib/i18n";
+import FlowConnectMock from "./FlowConnectMock.astro";
+import FlowConfigureMock from "./FlowConfigureMock.astro";
+import FlowActivateMock from "./FlowActivateMock.astro";
+import FlowTrackMock from "./FlowTrackMock.astro";
 
 interface Props {
   locale: Locale;
@@ -10,25 +14,27 @@ const appUrl = "https://app.futugrana.com";
 
 const t = locale === "it"
   ? {
-      cta: "Inizia gratis →",
+      cta: "Prova subito gratis →",
+      ctaSub: "Riscatta l'offerta · 1 account evaluation a tua scelta, nessuna scadenza temporale.",
       steps: [
-        { title: "Connetti", desc: "Colleghi i tuoi broker in 2 minuti. Tradovate via OAuth, MetaApi col token. Niente credenziali sparse in chat.", visual: { meta: "step 1 — onboarding", title: "Collega il broker", icon: "🔗" } },
-        { title: "Carica",   desc: "Carichi l'ID della tua challenge in evaluation. È gratis. Lo slot si attiva solo se passa a FUNDED.", visual: { meta: "step 2 — setup", title: "Carica la challenge", icon: "📥" } },
-        { title: "Funded",   desc: "Quando l'evaluation passa, il sistema rileva il nuovo ID. Lo slot si attiva. Tu continui dove avevi lasciato.", visual: { meta: "step 3 — go-live", title: "Quick Trade attivo", icon: "⚡" } },
-        { title: "Incassa",  desc: "Payout dalla dashboard. Atterra sul wallet che hai scelto. Tracciato come movimento contabile.", visual: { meta: "step 4 — payout", title: "Soldi sul wallet", icon: "💰" } },
+        { title: "Connetti",  desc: "Colleghi i tuoi ambienti broker in pochi minuti. Tradovate via OAuth, MetaApi via token. Credenziali gestite in modo sicuro.", visual: { meta: "step 1 — onboarding", title: "Collega l'ambiente", icon: "🔗" } },
+        { title: "Configura", desc: "Registri gli ID degli account che vuoi coordinare. La gestione operativa per gli account in evaluation è gratuita.", visual: { meta: "step 2 — setup", title: "Registra l'account", icon: "📥" } },
+        { title: "Attiva",    desc: "Quando un account passa a funded, il sistema lo rileva e attiva la gestione operativa. Continui senza interruzioni.", visual: { meta: "step 3 — go-live", title: "Coordinamento attivo", icon: "⚡" } },
+        { title: "Traccia",   desc: "Movimenti e registri operativi consultabili dalla dashboard. Il tuo registro contabile sempre allineato.", visual: { meta: "step 4 — registro", title: "Registro allineato", icon: "📊" } },
       ],
     }
   : {
-      cta: "Start free →",
+      cta: "Try free now →",
+      ctaSub: "Claim the offer · 1 evaluation account of your choice, no time limit.",
       steps: [
-        { title: "Connect", desc: "Connect your brokers in 2 minutes. Tradovate via OAuth, MetaApi with tokens. No credentials lost in chat.", visual: { meta: "step 1 — onboarding", title: "Connect the broker", icon: "🔗" } },
-        { title: "Load",    desc: "Upload your evaluation challenge ID. It's free. The slot only activates when the challenge goes FUNDED.", visual: { meta: "step 2 — setup", title: "Load the challenge", icon: "📥" } },
-        { title: "Funded",  desc: "When evaluation passes, the system detects the new ID. The slot activates. You pick up where you left off.", visual: { meta: "step 3 — go-live", title: "Quick Trade live", icon: "⚡" } },
-        { title: "Cash",    desc: "Payout from the dashboard. Lands on the wallet you chose. Tracked as a bookkeeping move.", visual: { meta: "step 4 — payout", title: "Money on wallet", icon: "💰" } },
+        { title: "Connect",   desc: "Connect your broker environments in minutes. Tradovate via OAuth, MetaApi via token. Credentials handled securely.", visual: { meta: "step 1 — onboarding", title: "Connect the environment", icon: "🔗" } },
+        { title: "Configure", desc: "Register the account IDs you want to coordinate. Operational management is free for evaluation accounts.", visual: { meta: "step 2 — setup", title: "Register account", icon: "📥" } },
+        { title: "Activate",  desc: "When an account goes funded, the system detects it and activates operational management. No interruptions.", visual: { meta: "step 3 — go-live", title: "Coordination live", icon: "⚡" } },
+        { title: "Track",     desc: "Operational records and movements available from the dashboard. Your bookkeeping always in sync.", visual: { meta: "step 4 — record", title: "Records in sync", icon: "📊" } },
       ],
     };
 ---
-<section data-flow class="relative h-[500vh] bg-blu" style="z-index: 15;">
+<section data-flow class="relative h-[320vh] bg-blu" style="z-index: 15;">
   <div class="sticky top-0 h-screen text-paper grid grid-cols-1 md:grid-cols-2 items-center px-[clamp(40px,8vw,140px)] gap-15">
     <div class="flex flex-col gap-6">
       <div class="flex flex-col gap-3.5">
@@ -36,7 +42,7 @@ const t = locale === "it"
           <span
             data-flow-title
             data-active={i === 0 ? "true" : "false"}
-            class="text-[clamp(48px,7vw,100px)] leading-[0.95] tracking-[-0.04em] font-black transition-colors duration-500 data-[active=true]:text-paper data-[active=false]:text-paper/[0.22]"
+            class="text-[clamp(24px,3.5vw,50px)] leading-[0.95] tracking-[-0.04em] font-black text-center transition-colors duration-500 data-[active=true]:text-paper data-[active=false]:text-paper/[0.22]"
           >{s.title}</span>
         ))}
       </div>
@@ -44,9 +50,12 @@ const t = locale === "it"
         {t.steps.map((s, i) => (
           <p data-flow-desc class="text-lg leading-snug font-medium opacity-90 mb-7" style={i === 0 ? "display:block" : "display:none"}>{s.desc}</p>
         ))}
-        <a href={`${appUrl}/signup`} class="inline-block px-9 py-4 border-[1.5px] border-paper rounded-full font-bold hover:bg-paper hover:text-blu transition-colors">
-          {t.cta}
-        </a>
+        <div class="flex flex-col items-start gap-3">
+          <a href={`${appUrl}/signup?offer=trial`} class="inline-block px-7 py-3.5 bg-paper text-ink rounded-full font-semibold text-sm tracking-tight hover:bg-paper/90 transition-colors">
+            {t.cta}
+          </a>
+          <p class="text-[13px] text-paper/65 leading-snug max-w-[420px]">{t.ctaSub}</p>
+        </div>
       </div>
     </div>
 
@@ -60,10 +69,20 @@ const t = locale === "it"
                  data-[position=next]:translate-y-full
                  data-[position=prev]:-translate-y-full"
         >
-          <div class="w-full h-full bg-paper rounded-2xl p-9 text-ink flex flex-col gap-5">
-            <span class="text-xs uppercase tracking-widest text-ink/50 font-semibold">{s.visual.meta}</span>
-            <h4 class="text-2xl font-black tracking-tight">{s.visual.title}</h4>
-            <div class="flex-1 bg-celeste rounded-2xl flex items-center justify-center text-[clamp(80px,12vw,140px)]">{s.visual.icon}</div>
+          <div class="w-full h-full bg-paper rounded-2xl p-6 md:p-7 text-ink flex flex-col gap-4">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] uppercase tracking-[0.18em] text-muted font-medium">{s.visual.meta}</span>
+            </div>
+            <h4 class="text-xl font-semibold tracking-tight leading-tight">{s.visual.title}</h4>
+            {i === 0 ? (
+              <FlowConnectMock />
+            ) : i === 1 ? (
+              <FlowConfigureMock />
+            ) : i === 2 ? (
+              <FlowActivateMock />
+            ) : (
+              <FlowTrackMock />
+            )}
           </div>
         </div>
       ))}

@@ -3,33 +3,33 @@ import PageLayout from "../../layouts/PageLayout.astro";
 import ScenePatternA from "../../components/ScenePatternA.astro";
 import EnPlaceholderBanner from "../../components/EnPlaceholderBanner.astro";
 ---
-<PageLayout title="For Managers" description="Manage your team of traders. For real." locale="en">
+<PageLayout title="For Managers" description="Coordinate your team of traders from a single operational infrastructure." locale="en">
   <EnPlaceholderBanner />
   <section class="relative bg-blu text-paper min-h-screen flex items-center px-8 py-24" style="z-index: 10;">
     <div class="max-w-[1200px] mx-auto">
-      <p class="text-xs uppercase tracking-[0.3em] opacity-50 mb-6">Per chi gestisce 5-20 trader</p>
-      <h1 class="text-[clamp(56px,9vw,140px)] font-black tracking-[-0.04em] leading-[0.95] mb-8">
-        Gestisci la tua squadra<br>di trader. Davvero.
+      <p class="text-xs uppercase tracking-[0.3em] opacity-50 mb-6">For those coordinating 5–20 traders</p>
+      <h1 class="text-[clamp(28px,4.5vw,70px)] font-black tracking-[-0.04em] leading-[0.95] mb-8 text-center">
+        Coordinate your team<br>of traders.
       </h1>
       <p class="text-xl opacity-80 max-w-2xl mb-12 font-medium">
-        Vedi chi performa. Traccia versato e incassato per ognuno.
+        Aggregated view across the whole team. Movements and operational records tracked per environment. No scattered spreadsheets.
       </p>
       <a href="#preventivo" class="inline-block px-9 py-4 bg-paper text-blu rounded-full font-bold hover:opacity-90">
-        Richiedi preventivo →
+        Request a quote →
       </a>
     </div>
   </section>
 
-  <ScenePatternA bgClass="bg-celeste" eyebrow="01 — multi-trader scoping" title="Ogni trader vede solo i suoi.<br>Tu vedi tutti." wordLeft="ogni" wordRight="suo" zIndex={11}>
-    <div class="w-full h-full bg-gradient-to-b from-[#1a2540] to-[#0a0e1a] text-paper flex items-center justify-center p-12">
-      <p class="text-xl font-medium opacity-80 leading-relaxed text-center max-w-2xl">RLS multi-tenant. Niente dati incrociati per sbaglio.</p>
+  <ScenePatternA bgClass="bg-celeste" textClass="text-ink" wordsClass="text-ink/[0.04]" eyebrow="01 — multi-trader scoping" title="Each trader sees only their own.<br>You see everyone." wordLeft="each" wordRight="own" zIndex={11}>
+    <div class="w-full h-full bg-ink text-paper flex items-center justify-center p-12">
+      <p class="text-xl font-medium opacity-80 leading-relaxed text-center max-w-2xl">Multi-tenant with per-user scoping. No accidental data crossover.</p>
     </div>
   </ScenePatternA>
 
   <section id="preventivo" class="bg-paper px-8 py-24 relative" style="z-index: 25;">
     <div class="max-w-[760px] mx-auto text-center">
-      <h2 class="text-[clamp(40px,5vw,72px)] font-black tracking-[-0.04em] leading-[0.95] mb-4">
-        Costruiamo insieme il tuo piano.
+      <h2 class="text-[clamp(20px,2.5vw,36px)] font-black tracking-[-0.04em] leading-[0.95] mb-4 text-center">
+        Let's build your plan together.
       </h2>
       <p class="text-base text-ink/60 mb-8">Contact <a href="mailto:sales@futugrana.com" class="underline">sales@futugrana.com</a>.</p>
     </div>

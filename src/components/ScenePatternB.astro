@@ -1,0 +1,43 @@
+---
+interface Props {
+  bgClass: string;
+  textClass?: string;
+  wordTop: string;
+  wordBottom: string;
+  zIndex: number;
+}
+const {
+  bgClass,
+  textClass = "text-paper",
+  wordTop,
+  wordBottom,
+  zIndex,
+} = Astro.props;
+---
+<section
+  data-pattern-b
+  class="relative h-[220vh] -mt-[100vh]"
+  style={`z-index: ${zIndex};`}
+>
+  <div class:list={["sticky top-0 h-screen overflow-hidden", bgClass]}>
+    <div class="absolute inset-0 z-[1]">
+      <slot />
+    </div>
+
+    <span
+      class:list={[
+        "absolute top-[14vh] left-[6vw] right-[6vw] z-[3] block text-left",
+        "text-[clamp(50px,8.5vw,140px)] leading-[0.9] tracking-[-0.05em] font-black lowercase",
+        textClass,
+      ]}
+    >{wordTop}</span>
+
+    <span
+      class:list={[
+        "absolute bottom-[7vh] left-[6vw] right-[6vw] z-[3] block text-right",
+        "text-[clamp(50px,8.5vw,140px)] leading-[0.9] tracking-[-0.05em] font-black lowercase",
+        textClass,
+      ]}
+    >{wordBottom}</span>
+  </div>
+</section>

@@ -1,0 +1,50 @@
+---
+const rows = [
+  { name: "APEX-001",    user: "lostar", meta: "CID · 12268", status: "connesso",   pillClass: "bg-accent/10 text-accent border-accent/30",        toggleOn: true },
+  { name: "Lucid Marco", user: "lostar", meta: "CID · 12268", status: "connesso",   pillClass: "bg-accent/10 text-accent border-accent/30",        toggleOn: true },
+  { name: "Topstep-A",   user: "lostar", meta: "CID · —",      status: "evaluation", pillClass: "bg-white/[0.04] text-paper/55 border-white/15", toggleOn: false },
+];
+---
+<div class="flex-1 bg-ink rounded-2xl border border-white/[0.06] overflow-hidden flex flex-col">
+  <div class="px-5 pt-4 pb-3 border-b border-white/[0.06]">
+    <div class="flex items-center gap-2">
+      <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+      <div class="text-[13px] font-semibold text-paper tracking-tight">Configurazione Tradovate</div>
+    </div>
+    <div class="text-[11px] text-paper/50 mt-1 leading-snug">Provider Futures · API connesse</div>
+  </div>
+
+  <div class="px-5 pt-3">
+    <div class="flex gap-1 bg-white/[0.04] rounded-lg p-1 border border-white/[0.06]">
+      <span class="flex-1 text-center text-[11px] py-1.5 rounded-md text-paper/45 font-medium">ProjectX</span>
+      <span class="flex-1 text-center text-[11px] py-1.5 rounded-md bg-white/[0.08] text-paper font-medium">Tradovate</span>
+      <span class="flex-1 text-center text-[11px] py-1.5 rounded-md text-paper/45 font-medium">MetaApi</span>
+    </div>
+  </div>
+
+  <div class="px-5 pb-5 pt-3 space-y-2 flex-1">
+    {rows.map((r) => (
+      <div class="bg-white/[0.03] border border-white/[0.08] rounded-lg px-3.5 py-2.5">
+        <div class="flex items-center justify-between mb-1.5">
+          <div class="flex items-center gap-1.5 min-w-0">
+            <span class="text-[12px] font-medium text-paper tracking-tight truncate">{r.name}</span>
+            <span class:list={["text-[9px] px-1.5 py-0.5 rounded-full border font-medium tracking-wide whitespace-nowrap", r.pillClass]}>{r.status}</span>
+          </div>
+          <div class:list={[
+            "relative w-7 h-3.5 rounded-full transition-colors",
+            r.toggleOn ? "bg-accent/30" : "bg-white/10",
+          ]}>
+            <div class:list={[
+              "absolute top-0.5 w-2.5 h-2.5 rounded-full transition-all",
+              r.toggleOn ? "right-0.5 bg-accent" : "left-0.5 bg-paper/40",
+            ]}></div>
+          </div>
+        </div>
+        <div class="flex gap-3 text-[10px] text-paper/45 font-mono">
+          <span>user · {r.user}</span>
+          <span>{r.meta}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>

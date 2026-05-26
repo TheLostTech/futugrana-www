@@ -4,20 +4,20 @@ import PricingCards from "../../components/PricingCards.astro";
 import EnPlaceholderBanner from "../../components/EnPlaceholderBanner.astro";
 
 const faqs = [
-  { q: "Quando inizio a pagare?", a: "Solo quando la tua challenge passa a FUNDED. Durante l'evaluation è tutto gratis." },
-  { q: "Posso cambiare piano?", a: "Sì, in qualsiasi momento dalla dashboard." },
-  { q: "Cosa succede se faccio breach?", a: "Esci dal piano, smetti di pagare. Lo slot si libera." },
-  { q: "Quali metodi di pagamento accettate?", a: "Carta di credito (Stripe) e SEPA." },
-  { q: "C'è un trial alternativo?", a: "Il modello evaluation = trial." },
+  { q: "When do I start paying?", a: "Plans activate on funded accounts. Operational management is free for evaluation accounts." },
+  { q: "Can I switch plans?", a: "Yes, anytime from the dashboard." },
+  { q: "What happens if an account is closed?", a: "The slot frees up and the plan automatically re-aligns to the still-active accounts." },
+  { q: "Which payment methods do you accept?", a: "Credit card (Stripe) and SEPA." },
+  { q: "Can I try it without commitment?", a: "Yes. Operational management on evaluation accounts is free — use it as long as you want before activating a plan." },
 ];
 ---
-<PageLayout title="Pricing" description="Three plans for retail traders, a fourth for managers." locale="en">
+<PageLayout title="Pricing" description="Three plans for traders, a fourth for those who coordinate a team." locale="en">
   <EnPlaceholderBanner />
   <section class="bg-paper px-8 pt-32 pb-12">
     <div class="max-w-[1200px] mx-auto text-center">
-      <h1 class="text-[clamp(56px,8vw,128px)] font-black tracking-[-0.04em] leading-[0.95] mb-6">Prezzi.</h1>
+      <h1 class="text-[clamp(28px,4vw,64px)] font-black tracking-[-0.04em] leading-[0.95] mb-6">Pricing.</h1>
       <p class="text-xl text-ink/60 max-w-2xl mx-auto font-medium">
-        Paghi solo quando la tua challenge passa a FUNDED. Evaluation sempre gratis.
+        Plans activate on funded accounts. Operational management is free for evaluation accounts.
       </p>
     </div>
   </section>
@@ -26,8 +26,8 @@ const faqs = [
 
   <section class="bg-paper px-8 py-24">
     <div class="max-w-[760px] mx-auto">
-      <h2 class="text-[clamp(40px,5vw,72px)] font-black tracking-[-0.04em] leading-[0.95] mb-12 text-center">
-        Domande frequenti.
+      <h2 class="text-[clamp(20px,2.5vw,36px)] font-black tracking-[-0.04em] leading-[0.95] mb-12 text-center">
+        Frequently asked questions.
       </h2>
       <div class="space-y-4">
         {faqs.map((f) => (

@@ -32,7 +32,7 @@ export interface PatternAFrame {
 }
 
 export function patternAFrame(progress: number): PatternAFrame {
-  const growT = clamp(progress / 0.35, 0, 1);
+  const growT = clamp(progress / 0.30, 0, 1);
   const cardWidth = lerp(50, 100, growT);
   const cardHeight = lerp(55, 100, growT);
   const cardBottom = lerp(-8, 0, growT);
@@ -41,7 +41,7 @@ export function patternAFrame(progress: number): PatternAFrame {
   const titleY = -growT * 250;
   const titleOpacity = clamp(1 - growT * 1.4, 0, 1);
 
-  const wordT = clamp((progress - 0.35) / 0.25, 0, 1);
+  const wordT = clamp((progress - 0.30) / 0.70, 0, 1);
   const wordsOpacity = wordT;
   const wordLeftX = (1 - wordT) * -80;
   const wordRightX = (1 - wordT) * 80;

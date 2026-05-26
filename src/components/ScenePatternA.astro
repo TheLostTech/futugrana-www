@@ -22,7 +22,7 @@ const {
 ---
 <section
   data-pattern-a
-  class="relative h-[350vh]"
+  class="relative h-[220vh]"
   style={`z-index: ${zIndex};`}
 >
   <div class:list={["sticky top-0 h-screen overflow-hidden flex items-center justify-center", bgClass]}>
@@ -35,7 +35,7 @@ const {
       class:list={[
         "absolute top-[38%] left-1/2 -translate-x-1/2 -translate-y-1/2",
         "text-center leading-[0.95] tracking-[-0.04em] font-black",
-        "text-[clamp(64px,10vw,160px)]",
+        "text-[clamp(32px,5vw,80px)]",
         textClass,
       ]}
       set:html={title}
@@ -44,8 +44,8 @@ const {
     <span
       data-word-left
       class:list={[
-        "absolute top-[4%] left-[3%]",
-        "text-[clamp(100px,17vw,280px)] leading-[0.85] tracking-[-0.05em] font-black lowercase",
+        "absolute top-[14vh] left-0 right-0 text-center block",
+        "text-[clamp(50px,8.5vw,140px)] leading-[0.9] tracking-[-0.05em] font-black lowercase",
         "opacity-0 pointer-events-none z-[4]",
         wordsClass,
       ]}
@@ -54,8 +54,8 @@ const {
     <span
       data-word-right
       class:list={[
-        "absolute bottom-[4%] right-[3%]",
-        "text-[clamp(100px,17vw,280px)] leading-[0.85] tracking-[-0.05em] font-black lowercase",
+        "absolute bottom-[7vh] left-0 right-0 text-center block",
+        "text-[clamp(50px,8.5vw,140px)] leading-[0.9] tracking-[-0.05em] font-black lowercase",
         "opacity-0 pointer-events-none z-[4]",
         wordsClass,
       ]}

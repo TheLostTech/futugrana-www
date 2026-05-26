@@ -2,15 +2,15 @@
 import PageLayout from "../layouts/PageLayout.astro";
 import ScenePatternA from "../components/ScenePatternA.astro";
 ---
-<PageLayout title="Per Gestori" description="Gestisci la tua squadra di trader. Davvero." locale="it">
+<PageLayout title="Per Gestori" description="Coordina la tua squadra di trader da un'unica infrastruttura operativa." locale="it">
   <section class="relative bg-blu text-paper min-h-screen flex items-center px-8 py-24" style="z-index: 10;">
     <div class="max-w-[1200px] mx-auto">
-      <p class="text-xs uppercase tracking-[0.3em] opacity-50 mb-6">Per chi gestisce 5-20 trader</p>
-      <h1 class="text-[clamp(56px,9vw,140px)] font-black tracking-[-0.04em] leading-[0.95] mb-8">
-        Gestisci la tua squadra<br>di trader. Davvero.
+      <p class="text-xs uppercase tracking-[0.3em] opacity-50 mb-6">Per chi coordina 5-20 trader</p>
+      <h1 class="text-[clamp(28px,4.5vw,70px)] font-black tracking-[-0.04em] leading-[0.95] mb-8 text-center">
+        Coordina la tua squadra<br>di trader.
       </h1>
       <p class="text-xl opacity-80 max-w-2xl mb-12 font-medium">
-        Vedi chi performa. Traccia versato e incassato per ognuno. Paga i payout senza Excel.
+        Vista aggregata su tutta la squadra. Movimenti e registri operativi tracciati per ogni ambiente. Senza fogli Excel sparsi.
       </p>
       <a href="#preventivo" class="inline-block px-9 py-4 bg-paper text-blu rounded-full font-bold hover:opacity-90">
         Richiedi preventivo →
@@ -18,45 +18,45 @@ import ScenePatternA from "../components/ScenePatternA.astro";
     </div>
   </section>
 
-  <ScenePatternA bgClass="bg-celeste" eyebrow="01 — multi-trader scoping" title="Ogni trader vede solo i suoi.<br>Tu vedi tutti." wordLeft="ogni" wordRight="suo" zIndex={11}>
-    <div class="w-full h-full bg-gradient-to-b from-[#1a2540] to-[#0a0e1a] text-paper flex items-center justify-center p-12">
+  <ScenePatternA bgClass="bg-celeste" textClass="text-ink" wordsClass="text-ink/[0.04]" eyebrow="01 — multi-trader scoping" title="Ogni trader vede solo i suoi.<br>Tu vedi tutti." wordLeft="ogni" wordRight="suo" zIndex={11}>
+    <div class="w-full h-full bg-ink text-paper flex items-center justify-center p-12">
       <div class="text-center max-w-2xl">
-        <p class="text-xl font-medium opacity-80 leading-relaxed">RLS multi-tenant. Niente dati incrociati per sbaglio. Trader vede solo le sue prop, i suoi movimenti, i suoi payout. Tu, da admin, vedi tutto aggregato e filtrato.</p>
+        <p class="text-xl font-medium opacity-80 leading-relaxed">Multi-tenant con scoping per utente. Ogni trader vede solo i propri ambienti, i propri movimenti e i propri registri. Tu, da admin, hai una vista aggregata e filtrabile.</p>
       </div>
     </div>
   </ScenePatternA>
 
-  <ScenePatternA bgClass="bg-giallo" eyebrow="02 — verità sul netto" title="Numeri veri per ogni trader.<br>Real-time." wordLeft="i numeri" wordRight="veri" zIndex={12}>
-    <div class="w-full h-full bg-gradient-to-b from-[#1a2540] to-[#0a0e1a] text-paper flex items-center justify-center p-12">
+  <ScenePatternA bgClass="bg-giallo" textClass="text-ink" wordsClass="text-ink/[0.04]" eyebrow="02 — stato operativo" title="Stato operativo chiaro.<br>Per ogni trader." wordLeft="stato" wordRight="chiaro" zIndex={12}>
+    <div class="w-full h-full bg-ink text-paper flex items-center justify-center p-12">
       <div class="text-center max-w-2xl">
-        <p class="text-xl font-medium opacity-80 leading-relaxed">Recovery exit_price + WS worker. Sai quanto incassa ognuno, davvero. Quando il broker chiude prima, il sistema recupera il vero PnL in 200-500ms.</p>
+        <p class="text-xl font-medium opacity-80 leading-relaxed">Eventi rilevati in tempo reale via WebSocket. Quando un ambiente broker chiude un'operazione, il sistema riallinea lo stato in 200–500ms. Niente disallineamenti da andare a inseguire.</p>
       </div>
     </div>
   </ScenePatternA>
 
-  <ScenePatternA bgClass="bg-viola" eyebrow="03 — contabilità integrata" title="Versato, incassato, payout.<br>Per ogni trader, per ogni prop." wordLeft="contabilità" wordRight="per ognuno" zIndex={13}>
-    <div class="w-full h-full bg-paper text-ink flex items-center justify-center p-12">
+  <ScenePatternA bgClass="bg-viola" textClass="text-ink" wordsClass="text-ink/[0.05]" eyebrow="03 — registro integrato" title="Movimenti e registri<br>per ogni trader, per ogni ambiente." wordLeft="registro" wordRight="integrato" zIndex={13}>
+    <div class="w-full h-full bg-surface text-ink border border-[color:var(--color-border)] flex items-center justify-center p-12">
       <div class="text-center max-w-2xl">
-        <p class="text-xl font-medium opacity-80 leading-relaxed">Movimenti tracciati, dossier annuale pulito, niente Excel cross-trader. Esporti CSV pronto per il commercialista.</p>
+        <p class="text-xl font-medium opacity-80 leading-relaxed">Movimenti tracciati, dossier annuale ordinato, niente Excel cross-trader. Esporti CSV pronto per il commercialista.</p>
       </div>
     </div>
   </ScenePatternA>
 
-  <ScenePatternA bgClass="bg-celeste-2" textClass="text-paper" eyebrow="04 — multi-broker reale" title="Tradovate. MetaApi. ProjectX.<br>Tutti i broker. Tutti i trader." wordLeft="tutti i" wordRight="broker" zIndex={14}>
-    <div class="w-full h-full bg-gradient-to-b from-[#2a1065] to-[#4c1d95] text-paper flex items-center justify-center p-12">
+  <ScenePatternA bgClass="bg-celeste-2" textClass="text-paper" wordsClass="text-paper/[0.06]" eyebrow="04 — multi-broker" title="Tradovate. MetaApi. ProjectX.<br>Tutti gli ambienti. Tutti i trader." wordLeft="ambienti" wordRight="collegati" zIndex={14}>
+    <div class="w-full h-full bg-ink text-paper flex items-center justify-center p-12 border border-white/5">
       <div class="text-center max-w-2xl">
-        <p class="text-xl font-medium opacity-80 leading-relaxed">Connessione provider per ogni trader, indipendente, isolata. Apex, FTMO, Topstep, Lucid, Tradeify — tutti i mix possibili tra i tuoi.</p>
+        <p class="text-xl font-medium opacity-80 leading-relaxed">Una connessione provider per ogni trader, indipendente e isolata. Apex, FTMO, Topstep, Lucid, Tradeify — qualsiasi combinazione all'interno della squadra.</p>
       </div>
     </div>
   </ScenePatternA>
 
   <section id="preventivo" class="bg-paper px-8 py-24 relative" style="z-index: 25;">
     <div class="max-w-[760px] mx-auto">
-      <h2 class="text-[clamp(40px,5vw,72px)] font-black tracking-[-0.04em] leading-[0.95] mb-4 text-center">
+      <h2 class="text-[clamp(20px,2.5vw,36px)] font-black tracking-[-0.04em] leading-[0.95] mb-4 text-center">
         Costruiamo insieme il tuo piano.
       </h2>
       <p class="text-center text-ink/60 mb-12 text-base font-medium">
-        Compilala in 2 minuti. Ti rispondiamo entro 24h con una proposta di pricing personalizzata.
+        Compila in 2 minuti. Ti rispondiamo entro 24h con una proposta personalizzata in base al numero di trader e slot da coordinare.
       </p>
 
       <form
@@ -73,7 +73,7 @@ import ScenePatternA from "../components/ScenePatternA.astro";
           <input type="email" name="email" required class="w-full px-4 py-3 bg-ink/5 border-2 border-ink/10 rounded-xl focus:border-ink focus:outline-none font-medium" />
         </div>
         <div>
-          <label class="block text-sm font-bold mb-2">Numero di trader gestiti *</label>
+          <label class="block text-sm font-bold mb-2">Numero di trader coordinati *</label>
           <select name="team_size" required class="w-full px-4 py-3 bg-ink/5 border-2 border-ink/10 rounded-xl focus:border-ink focus:outline-none font-medium">
             <option value="">Seleziona...</option>
             <option value="1-5">1-5</option>

@@ -1,0 +1,66 @@
+---
+const rows = [
+  { name: "Lucid_03", tags: ["FUT","TDV","MA"], phase: "funded",  phaseClass: "bg-accent/10 text-accent border-accent/30",      balance: "+€54.079", change: "+€86,50",  status: "ready",   statusClass: "bg-accent/10 text-accent border-accent/30" },
+  { name: "Lucid_04", tags: ["FUT","TDV","MA"], phase: "funded",  phaseClass: "bg-accent/10 text-accent border-accent/30",      balance: "+€54.071", change: "+€153,00", status: "waiting", statusClass: "bg-white/[0.05] text-paper/55 border-white/15" },
+  { name: "Alpha_99", tags: ["FUT","TDV","MA"], phase: "fase 1",  phaseClass: "bg-white/[0.05] text-paper/55 border-white/15",  balance: "+€53.003", change: "+€22,42",  status: "ready",   statusClass: "bg-accent/10 text-accent border-accent/30" },
+];
+---
+<div class="flex-1 bg-ink rounded-2xl border border-white/[0.06] overflow-hidden flex flex-col">
+  <div class="px-5 pt-4 pb-3 border-b border-white/[0.06]">
+    <div class="grid grid-cols-3 gap-3">
+      <div>
+        <div class="text-[9px] uppercase tracking-[0.15em] text-paper/45 font-medium">Disponibilità broker</div>
+        <div class="text-[13px] font-mono text-paper tabular-nums mt-1 tracking-tight">€9.916,60</div>
+      </div>
+      <div>
+        <div class="text-[9px] uppercase tracking-[0.15em] text-paper/45 font-medium">Ideal chiusura</div>
+        <div class="text-[13px] font-mono text-accent tabular-nums mt-1 tracking-tight">€7.970,13</div>
+      </div>
+      <div>
+        <div class="text-[9px] uppercase tracking-[0.15em] text-paper/45 font-medium">Pending</div>
+        <div class="text-[13px] font-mono text-paper/55 tabular-nums mt-1 tracking-tight">€0,00</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="px-5 pt-3 pb-2 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <span class="text-paper/40 text-[10px]">▾</span>
+      <span class="text-[11px] font-semibold text-paper tracking-tight">Marco L</span>
+      <span class="text-[9px] px-1.5 py-0.5 rounded-full bg-white/[0.05] text-paper/55 border border-white/10 font-medium">3 challenge</span>
+    </div>
+    <div class="text-[10px] text-paper/55">Balance <span class="font-mono text-paper tabular-nums">€162.678,50</span></div>
+  </div>
+
+  <div class="px-5 space-y-1.5">
+    {rows.map((r) => (
+      <div class="bg-white/[0.03] border border-white/[0.08] rounded-md px-3 py-2 grid grid-cols-[1fr_auto_auto] gap-3 items-center">
+        <div class="min-w-0">
+          <div class="flex items-center gap-1.5 mb-1">
+            <span class="text-[11px] font-medium text-paper truncate tracking-tight">{r.name}</span>
+            <span class:list={["text-[8px] px-1.5 py-0.5 rounded-full border font-medium tracking-[0.1em] uppercase whitespace-nowrap", r.phaseClass]}>{r.phase}</span>
+          </div>
+          <div class="flex gap-1">
+            {r.tags.map((tag) => (
+              <span class="text-[8px] font-mono text-paper/50 px-1.5 py-0.5 rounded bg-white/[0.04] border border-white/[0.08]">{tag}</span>
+            ))}
+          </div>
+        </div>
+        <div class="text-right">
+          <div class="text-[11px] font-mono text-paper tabular-nums tracking-tight">{r.balance}</div>
+          <div class="text-[9px] font-mono text-accent tabular-nums mt-0.5">{r.change}</div>
+        </div>
+        <span class:list={["text-[9px] px-2 py-0.5 rounded-full border font-medium tracking-wider whitespace-nowrap", r.statusClass]}>{r.status}</span>
+      </div>
+    ))}
+  </div>
+
+  <div class="px-5 pt-3 pb-4 mt-auto border-t border-white/[0.06] flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <span class="text-paper/40 text-[10px]">▸</span>
+      <span class="text-[11px] font-semibold text-paper/70 tracking-tight">Pie</span>
+      <span class="text-[9px] px-1.5 py-0.5 rounded-full bg-white/[0.04] text-paper/45 border border-white/10 font-medium">3 challenge</span>
+    </div>
+    <div class="text-[10px] text-paper/45">Balance <span class="font-mono text-paper/70 tabular-nums">€212.006,44</span></div>
+  </div>
+</div>

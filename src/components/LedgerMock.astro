@@ -1,31 +1,32 @@
 ---
 const movements = [
-  { sign: "+", amount: "€1.200", type: "PAYOUT", target: "APEX-001 → wallet primario", date: "22 mag" },
-  { sign: "-", amount: "€295", type: "FEE phase 2", target: "Lucid-LFF", date: "18 mag" },
-  { sign: "+", amount: "€600", type: "VERSAMENTO", target: "Tradeify", date: "12 mag" },
+  { sign: "+", amount: "€1.200", type: "Payout",     target: "APEX-001 → wallet primario", date: "22 mag" },
+  { sign: "−", amount: "€295",   type: "Fee phase 2", target: "Lucid-LFF",                   date: "18 mag" },
+  { sign: "+", amount: "€600",   type: "Versamento",  target: "Tradeify",                    date: "12 mag" },
 ];
 ---
-<div class="w-full h-full bg-paper text-ink flex flex-col items-center justify-center gap-6 p-[clamp(20px,4vw,60px)]">
-  <div class="bg-ink/[0.03] rounded-2xl divide-y divide-ink/10 max-w-[760px] w-full">
+<div class="w-full h-full bg-surface text-ink flex flex-col items-center justify-center gap-6 p-[clamp(20px,4vw,60px)]">
+  <div class="bg-paper border border-[color:var(--color-border)] rounded-2xl divide-y divide-[color:var(--color-border)] max-w-[760px] w-full">
     {movements.map((m) => (
-      <div class="flex items-center justify-between p-5">
+      <div class="flex items-center justify-between px-5 py-4">
         <div class="flex items-center gap-4">
           <span class:list={[
-            "text-2xl font-black w-20",
-            m.sign === "+" ? "text-[#16a34a]" : "text-[#dc2626]",
+            "text-lg font-semibold w-20 tabular-nums tracking-tight",
+            m.sign === "+" ? "text-accent" : "text-ink/55",
           ]}>{m.sign}{m.amount}</span>
           <div>
-            <div class="text-sm font-bold">{m.type}</div>
-            <div class="text-xs opacity-60">{m.target}</div>
+            <div class="text-sm font-medium text-ink">{m.type}</div>
+            <div class="text-xs text-muted">{m.target}</div>
           </div>
         </div>
-        <div class="text-xs font-mono opacity-50">{m.date}</div>
+        <div class="text-xs font-mono text-subtle">{m.date}</div>
       </div>
     ))}
   </div>
-  <div class="bg-ink text-paper rounded-2xl px-6 py-4 flex gap-8 text-sm font-bold">
-    <span>Netto 30gg: <span class="text-[#5dd66c]">€3.148</span></span>
-    <span class="opacity-60">|</span>
-    <span class="opacity-80">Tasse stimate: €1.029</span>
+  <div class="bg-ink text-paper rounded-2xl px-6 py-4 flex gap-6 text-sm">
+    <span class="text-paper/70">Netto 30 giorni</span>
+    <span class="text-accent font-semibold tabular-nums">€3.148</span>
+    <span class="text-paper/20">·</span>
+    <span class="text-paper/55">Tasse stimate <span class="tabular-nums">€1.029</span></span>
   </div>
 </div>

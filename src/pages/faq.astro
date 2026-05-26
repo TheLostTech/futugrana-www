@@ -2,14 +2,14 @@
 import PageLayout from "../layouts/PageLayout.astro";
 
 const categories = [
-  { title: "Pricing & trial", questions: [
-    { q: "Quando inizio a pagare?", a: "Solo quando la challenge passa a FUNDED." },
+  { title: "Prezzi & prova", questions: [
+    { q: "Quando inizio a pagare?", a: "Il piano si attiva sugli account funded. Per gli account in evaluation la gestione operativa è gratuita." },
   ]},
   { title: "Setup tecnico", questions: [
     { q: "Posso collegare più broker?", a: "Sì. Tradovate, MetaApi (MT4/MT5) e ProjectX, anche tutti insieme." },
   ]},
-  { title: "Funded & payout", questions: [
-    { q: "Come funziona il passaggio FUNDED?", a: "Quando la tua evaluation passa, la prop firm ti dà un nuovo account ID. Il sistema lo rileva e attiva lo slot pagante." },
+  { title: "Account funded", questions: [
+    { q: "Cosa succede quando un account passa a funded?", a: "Quando la prop firm assegna un nuovo account ID, il sistema lo rileva automaticamente e attiva la gestione operativa sullo slot corrispondente." },
   ]},
   { title: "Supporto", questions: [
     { q: "Come posso contattarvi?", a: "Email a support@futugrana.com, Telegram via la community ufficiale." },
@@ -19,7 +19,7 @@ const categories = [
 <PageLayout title="FAQ" description="Domande frequenti su futugrana." locale="it">
   <section class="bg-paper px-8 pt-32 pb-24">
     <div class="max-w-[800px] mx-auto">
-      <h1 class="text-[clamp(56px,8vw,128px)] font-black tracking-[-0.04em] leading-[0.95] mb-16">FAQ.</h1>
+      <h1 class="text-[clamp(28px,4vw,64px)] font-black tracking-[-0.04em] leading-[0.95] mb-16 text-center">FAQ.</h1>
       {categories.map((cat) => (
         <div class="mb-12">
           <h2 class="text-xs uppercase tracking-[0.3em] text-ink/50 mb-6 font-semibold">{cat.title}</h2>

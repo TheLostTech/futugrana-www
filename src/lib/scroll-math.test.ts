@@ -48,8 +48,8 @@ describe("patternAFrame", () => {
     expect(f.wordsOpacity).toBe(0);
   });
 
-  it("at progress 0.35 → card fully expanded, title gone", () => {
-    const f = patternAFrame(0.35);
+  it("at progress 0.30 → card fully expanded, title gone", () => {
+    const f = patternAFrame(0.30);
     expect(f.cardWidth).toBe(100);
     expect(f.cardHeight).toBe(100);
     expect(f.cardBottom).toBe(0);
@@ -57,14 +57,15 @@ describe("patternAFrame", () => {
     expect(f.titleOpacity).toBe(0);
   });
 
-  it("at progress 0.6 → words at full opacity", () => {
-    const f = patternAFrame(0.6);
-    expect(f.wordsOpacity).toBe(1);
+  it("at progress 0.65 → words half-faded in (no dead zone in the second half)", () => {
+    const f = patternAFrame(0.65);
+    expect(f.wordsOpacity).toBeCloseTo(0.5, 1);
   });
 
-  it("at progress 1 → stable fullscreen + words visible", () => {
+  it("at progress 1 → stable fullscreen + words fully visible at end of section", () => {
     const f = patternAFrame(1);
     expect(f.cardWidth).toBe(100);
     expect(f.wordsOpacity).toBe(1);
   });
 });
+

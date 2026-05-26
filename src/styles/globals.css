@@ -1,16 +1,36 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #0a0e1a;
-  --color-paper: #ffffff;
-  --color-celeste: #8ec6f5;
-  --color-celeste-2: #5fa9e4;
-  --color-giallo: #fde047;
-  --color-viola: #c4b5fd;
-  --color-blu: #1e3a8a;
-  --color-verde-menta: #c6f6d5;
+  /* Brand */
+  --color-ink: #0F172A;        /* slate-900 — testo principale, dark surfaces, CTA primary */
+  --color-paper: #F8FAFC;      /* slate-50 — main background */
 
-  --font-sans: "Helvetica Neue", -apple-system, system-ui, sans-serif;
+  /* Surfaces */
+  --color-surface: #FFFFFF;    /* cards bianche */
+  --color-elevated: #FCFCFD;   /* sezioni "elevated" leggermente off-white */
+
+  /* Borders */
+  --color-border: #E2E8F0;     /* bordi soft */
+
+  /* Typography secondary */
+  --color-muted: #64748B;      /* slate-500 — testo secondario */
+  --color-subtle: #94A3B8;     /* slate-400 — testo disabilitato/subtle */
+
+  /* Single accent: sage. Da usare al 5% max. */
+  --color-accent: #5FA38C;
+  --color-accent-hover: #4B8B76;
+  --color-accent-soft: #EAF4F0;
+
+  /* Alias legacy: i nomi vecchi puntano al nuovo sistema neutro così le classi esistenti
+     (bg-celeste, bg-giallo, bg-viola, ecc.) non rompono e mappano sui giusti toni minimal. */
+  --color-celeste: #FFFFFF;       /* era saturated → ora pure white surface */
+  --color-celeste-2: #0F172A;     /* era saturated blu → ora brand dark */
+  --color-verde-menta: #FCFCFD;   /* era saturated → ora elevated */
+  --color-giallo: #FFFFFF;        /* era saturated → ora pure white */
+  --color-viola: #EAF4F0;         /* era saturated → ora accent-soft (l'unico tocco di colore) */
+  --color-blu: #0F172A;           /* era saturated → ora brand dark */
+
+  --font-sans: "Inter", "Helvetica Neue", -apple-system, system-ui, sans-serif;
 }
 
 @layer base {
@@ -19,7 +39,7 @@
     font-family: var(--font-sans);
     color: var(--color-ink);
     background: var(--color-paper);
-    font-weight: 700;
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }

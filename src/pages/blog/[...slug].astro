@@ -17,7 +17,7 @@ const { Content } = await render(post);
       <p class="text-xs uppercase tracking-widest text-ink/50 font-semibold mb-4">
         {post.data.pubDate.toLocaleDateString("it-IT", { year: "numeric", month: "long", day: "numeric" })}
       </p>
-      <h1 class="text-[clamp(40px,6vw,72px)] font-black tracking-[-0.04em] leading-[0.95] mb-6">{post.data.title}</h1>
+      <h1 class="text-[clamp(20px,3vw,36px)] font-black tracking-[-0.04em] leading-[0.95] mb-6 text-center">{post.data.title}</h1>
       <p class="text-xl text-ink/70 mb-12 font-medium leading-relaxed">{post.data.description}</p>
       <div class="prose prose-lg max-w-none">
         <Content />
