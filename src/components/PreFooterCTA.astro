@@ -21,6 +21,6 @@ const t = locale === "it"
   <div class="max-w-[1000px] mx-auto">
     <h2 class="text-[clamp(24px,3.5vw,60px)] font-black tracking-[-0.04em] leading-none mb-8 text-center" set:html={t.title} />
     <p class="text-xl opacity-80 max-w-2xl mx-auto mb-10 font-medium">{t.sub}</p>
-    <a href={`${appUrl}/signup`} class="inline-block px-12 py-5 bg-paper text-ink rounded-full font-black text-lg hover:opacity-90">{t.cta}</a>
+    <a href={`${appUrl}/signup?ref=prefooter`} class="inline-block px-12 py-5 bg-paper text-ink rounded-full font-black text-lg hover:opacity-90">{t.cta}</a>
   </div>
 </section>

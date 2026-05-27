@@ -15,7 +15,7 @@ const t = locale === "it"
       toggleTrader: "Trader",
       toggleManager: "Gestore",
       title: "Automazione operativa<br>per trader futures.",
-      sub: "Sincronizzazione operativa, multi-broker e gestione event-driven in tempo reale. Il controllo resta al trader. L'infrastruttura pensa al coordinamento.",
+      sub: "Sincronizzazione operativa, multi-provider e gestione event-driven in tempo reale. Il controllo resta al trader. L'infrastruttura pensa al coordinamento.",
       ctaPrimary: "Inizia gratis →",
       ctaMicro: "Provala gratis. Il piano si attiva solo sugli account funded.",
       ctaSecondary: "Scopri la piattaforma",
@@ -26,7 +26,7 @@ const t = locale === "it"
       toggleTrader: "Trader",
       toggleManager: "Manager",
       title: "Operational automation<br>for futures traders.",
-      sub: "Operational sync, multi-broker and event-driven management in real time. Trading decisions stay with the trader. The infrastructure handles coordination.",
+      sub: "Operational sync, multi-provider and event-driven management in real time. Trading decisions stay with the trader. The infrastructure handles coordination.",
       ctaPrimary: "Start free →",
       ctaMicro: "Try it free. The plan activates only on funded accounts.",
       ctaSecondary: "Explore the platform",
@@ -39,7 +39,7 @@ const t = locale === "it"
   textClass="text-ink"
   wordsClass="text-ink/[0.04]"
   eyebrow=""
-  title={t.title}
+  title=""
   wordLeft={t.wordLeft}
   wordRight={t.wordRight}
   zIndex={10}
@@ -48,21 +48,29 @@ const t = locale === "it"
 </ScenePatternA>
 
 <div class="fixed top-[88px] left-1/2 -translate-x-1/2 z-[20] pointer-events-none" data-hero-overlay>
-  <div class="bg-ink text-paper rounded-full p-1.5 inline-flex gap-0 text-sm font-bold pointer-events-auto">
+  <div class="bg-ink text-paper rounded-full p-1.5 inline-flex gap-0 text-sm font-medium pointer-events-auto">
     <span class="px-5 py-2 rounded-full bg-paper text-ink">{t.toggleTrader}</span>
     <a href={localizeUrl("/per-gestori", locale)} class="px-5 py-2 rounded-full hover:bg-white/10">{t.toggleManager}</a>
   </div>
 </div>
 
-<div class="fixed top-[55vh] left-1/2 -translate-x-1/2 z-[20] pointer-events-none text-center" data-hero-cta>
-  <p class="text-ink/70 text-lg max-w-xl mx-auto mb-7 font-medium pointer-events-auto" set:html={t.sub} />
-  <a href={`${appUrl}/signup`} class="inline-block px-9 py-4 bg-ink text-paper rounded-full font-bold pointer-events-auto hover:opacity-90">
-    {t.ctaPrimary}
-  </a>
-  <p class="text-[13px] text-ink/60 mt-3 pointer-events-auto">{t.ctaMicro}</p>
-  <p class="mt-2 pointer-events-auto">
-    <a href={localizeUrl("/prezzi", locale)} class="text-sm text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors">{t.ctaSecondary}</a>
-  </p>
+<div class="fixed inset-x-0 top-[20vh] z-[20] pointer-events-none px-[clamp(28px,6vw,100px)]" data-hero-cta>
+  <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-6 items-start">
+    <h1
+      class="md:col-span-7 text-[clamp(36px,5vw,76px)] font-black tracking-[-0.045em] leading-[0.95] text-ink pointer-events-auto"
+      set:html={t.title}
+    />
+    <div class="md:col-span-5 md:pt-[7vh] flex flex-col gap-5 pointer-events-auto max-w-[440px]">
+      <p class="text-[15px] text-ink/70 leading-relaxed" set:html={t.sub} />
+      <div class="flex flex-col items-start gap-3">
+        <a href={`${appUrl}/signup?ref=hero`} class="inline-block px-7 py-3.5 bg-ink text-paper rounded-full font-semibold text-sm tracking-tight hover:opacity-90 transition-opacity">
+          {t.ctaPrimary}
+        </a>
+        <p class="text-[12px] text-ink/55 leading-snug">{t.ctaMicro}</p>
+        <a href={localizeUrl("/prezzi", locale)} class="text-sm text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors">{t.ctaSecondary}</a>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script is:inline>
@@ -71,7 +79,10 @@ const t = locale === "it"
     const ctaBlock = document.querySelector("[data-hero-cta]");
     if (!overlay || !ctaBlock) return;
     function update() {
-      const hide = window.scrollY > window.innerHeight * 0.5;
+      // fade out earlier — the mock card grows to fullscreen at ~30% scroll of
+      // the hero section (~30vh of page scroll), so hero overlay must be gone
+      // by then to avoid dark-on-dark or light-on-light collisions
+      const hide = window.scrollY > window.innerHeight * 0.20;
       overlay.style.opacity = hide ? "0" : "1";
       ctaBlock.style.opacity = hide ? "0" : "1";
       overlay.style.transition = "opacity 0.3s";

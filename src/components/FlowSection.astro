@@ -17,7 +17,7 @@ const t = locale === "it"
       cta: "Prova subito gratis →",
       ctaSub: "Riscatta l'offerta · 1 account evaluation a tua scelta, nessuna scadenza temporale.",
       steps: [
-        { title: "Connetti",  desc: "Colleghi i tuoi ambienti broker in pochi minuti. Tradovate via OAuth, MetaApi via token. Credenziali gestite in modo sicuro.", visual: { meta: "step 1 — onboarding", title: "Collega l'ambiente", icon: "🔗" } },
+        { title: "Connetti",  desc: "Colleghi i tuoi provider in pochi minuti. Tradovate via OAuth, MetaApi via token. Credenziali gestite in modo sicuro.", visual: { meta: "step 1 — onboarding", title: "Collega il provider", icon: "🔗" } },
         { title: "Configura", desc: "Registri gli ID degli account che vuoi coordinare. La gestione operativa per gli account in evaluation è gratuita.", visual: { meta: "step 2 — setup", title: "Registra l'account", icon: "📥" } },
         { title: "Attiva",    desc: "Quando un account passa a funded, il sistema lo rileva e attiva la gestione operativa. Continui senza interruzioni.", visual: { meta: "step 3 — go-live", title: "Coordinamento attivo", icon: "⚡" } },
         { title: "Traccia",   desc: "Movimenti e registri operativi consultabili dalla dashboard. Il tuo registro contabile sempre allineato.", visual: { meta: "step 4 — registro", title: "Registro allineato", icon: "📊" } },
@@ -27,7 +27,7 @@ const t = locale === "it"
       cta: "Try free now →",
       ctaSub: "Claim the offer · 1 evaluation account of your choice, no time limit.",
       steps: [
-        { title: "Connect",   desc: "Connect your broker environments in minutes. Tradovate via OAuth, MetaApi via token. Credentials handled securely.", visual: { meta: "step 1 — onboarding", title: "Connect the environment", icon: "🔗" } },
+        { title: "Connect",   desc: "Connect your providers in minutes. Tradovate via OAuth, MetaApi via token. Credentials handled securely.", visual: { meta: "step 1 — onboarding", title: "Connect the provider", icon: "🔗" } },
         { title: "Configure", desc: "Register the account IDs you want to coordinate. Operational management is free for evaluation accounts.", visual: { meta: "step 2 — setup", title: "Register account", icon: "📥" } },
         { title: "Activate",  desc: "When an account goes funded, the system detects it and activates operational management. No interruptions.", visual: { meta: "step 3 — go-live", title: "Coordination live", icon: "⚡" } },
         { title: "Track",     desc: "Operational records and movements available from the dashboard. Your bookkeeping always in sync.", visual: { meta: "step 4 — record", title: "Records in sync", icon: "📊" } },
@@ -51,7 +51,7 @@ const t = locale === "it"
           <p data-flow-desc class="text-lg leading-snug font-medium opacity-90 mb-7" style={i === 0 ? "display:block" : "display:none"}>{s.desc}</p>
         ))}
         <div class="flex flex-col items-start gap-3">
-          <a href={`${appUrl}/signup?offer=trial`} class="inline-block px-7 py-3.5 bg-paper text-ink rounded-full font-semibold text-sm tracking-tight hover:bg-paper/90 transition-colors">
+          <a href={`${appUrl}/signup?ref=flow`} class="inline-block px-7 py-3.5 bg-paper text-ink rounded-full font-semibold text-sm tracking-tight hover:bg-paper/90 transition-colors">
             {t.cta}
           </a>
           <p class="text-[13px] text-paper/65 leading-snug max-w-[420px]">{t.ctaSub}</p>

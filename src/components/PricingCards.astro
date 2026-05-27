@@ -20,13 +20,13 @@ interface Card {
 const t = locale === "it"
   ? {
       title: "Scegli il tuo piano.",
-      sub: "Tutti i piani includono dashboard, esecuzione, multi-broker e registro operativo. La gestione per gli account in evaluation è gratuita; i piani si attivano sugli account funded.",
+      sub: "Tutti i piani includono dashboard, esecuzione, multi-provider e registro operativo. La gestione per gli account in evaluation è gratuita; i piani si attivano sugli account funded.",
       mostChosen: "PIÙ SCELTO",
       contactCta: "Scopri di più →",
       startCta: "Inizia gratis →",
       perMonth: "/mese",
       cards: [
-        { name: "Solo",        price: "€150",        sub: "1 slot · setup minimo",       bullets: ["1 account funded coordinato", "Dashboard, esecuzione, multi-broker", "Registro operativo integrato", "Account in evaluation sempre gratis"] },
+        { name: "Solo",        price: "€150",        sub: "1 slot · setup minimo",       bullets: ["1 account funded coordinato", "Dashboard, esecuzione, multi-provider", "Registro operativo integrato", "Account in evaluation sempre gratis"] },
         { name: "Team",        price: "€300",        sub: "3 slot · multi-account",      bullets: ["3 account funded in parallelo", "+ tutto del Solo", "Vista aggregata su più ambienti"], featured: true },
         { name: "Squadra",     price: "€400",        sub: "5 slot · operatività estesa", bullets: ["5 account funded in parallelo", "+ tutto del Team", "Supporto prioritario"] },
         { name: "Per Gestori", price: "Contattaci", sub: "Coordini una squadra di trader", bullets: ["Multi-trader con scoping per ognuno", "Dashboard aggregata", "Pricing concordato in base a trader e slot necessari"], isContact: true },
@@ -34,13 +34,13 @@ const t = locale === "it"
     }
   : {
       title: "Choose your plan.",
-      sub: "All plans include dashboard, execution, multi-broker and operational record. Evaluation accounts are free; plans activate on funded accounts.",
+      sub: "All plans include dashboard, execution, multi-provider and operational record. Evaluation accounts are free; plans activate on funded accounts.",
       mostChosen: "MOST CHOSEN",
       contactCta: "Learn more →",
       startCta: "Start free →",
       perMonth: "/month",
       cards: [
-        { name: "Solo",         price: "€150",       sub: "1 slot · minimal setup",        bullets: ["1 funded account coordinated", "Dashboard, execution, multi-broker", "Built-in operational record", "Evaluation accounts always free"] },
+        { name: "Solo",         price: "€150",       sub: "1 slot · minimal setup",        bullets: ["1 funded account coordinated", "Dashboard, execution, multi-provider", "Built-in operational record", "Evaluation accounts always free"] },
         { name: "Team",         price: "€300",       sub: "3 slots · multi-account",       bullets: ["3 funded accounts in parallel", "+ everything in Solo", "Aggregated view across environments"], featured: true },
         { name: "Squadra",      price: "€400",       sub: "5 slots · extended operations", bullets: ["5 funded accounts in parallel", "+ everything in Team", "Priority support"] },
         { name: "For Managers", price: "Contact us", sub: "Coordinate a team of traders",  bullets: ["Multi-trader scoping per user", "Aggregated dashboard", "Custom pricing based on traders & slots needed"], isContact: true },
@@ -91,7 +91,7 @@ const t = locale === "it"
               ))}
             </ul>
             <a
-              href={c.isContact ? localizeUrl("/per-gestori", locale) : `${appUrl}/signup?plan=${c.name.toLowerCase()}`}
+              href={c.isContact ? localizeUrl("/per-gestori", locale) : `${appUrl}/signup?ref=pricing-${c.name.toLowerCase()}`}
               class:list={[
                 "inline-block text-center px-5 py-3 rounded-full text-sm font-semibold transition-colors",
                 ctaClass,
