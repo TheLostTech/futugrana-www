@@ -3,19 +3,19 @@ import PageLayout from "../layouts/PageLayout.astro";
 import PricingCards from "../components/PricingCards.astro";
 
 const faqs = [
-  { q: "Quando inizio a pagare?", a: "Il piano si attiva sugli account funded. Per gli account in evaluation la gestione operativa è gratuita." },
-  { q: "Posso cambiare piano?", a: "Sì, in qualsiasi momento dalla dashboard. Cambia da Solo a Team o viceversa." },
-  { q: "Cosa succede se un account viene chiuso?", a: "Lo slot si libera e il piano si riallinea automaticamente sugli account ancora attivi." },
+  { q: "Quanto costa iniziare?", a: "Il piano Free è gratuito per gestione base e tracking. I piani mensili partono da €9,90 e sbloccano gestione illimitata; dai piani superiori, operatività dalla dashboard e copertura broker." },
+  { q: "Posso cambiare piano?", a: "Sì, in qualsiasi momento dalla dashboard. Passi da Gestionale a Opera Prop o Eval Coverage quando ti serve operare o coprire." },
+  { q: "Cos'è l'attivazione funded?", a: "Quando un account passa funded, è prevista una fee una tantum legata a quell'account: 25K $5, 50K $10, 100K e oltre $15. Non è un abbonamento." },
   { q: "Quali metodi di pagamento accettate?", a: "Carta di credito (Stripe) e SEPA. Niente PayPal per ora." },
-  { q: "Posso provarla senza impegno?", a: "Sì. La gestione operativa sugli account in evaluation è gratuita: la usi tutto il tempo che vuoi prima di attivare un piano." },
+  { q: "Posso provarla senza impegno?", a: "Sì. Il piano Free resta sempre gratuito per gestione base e tracking: lo usi tutto il tempo che vuoi prima di passare a un piano mensile." },
 ];
 ---
-<PageLayout title="Prezzi" description="Tre piani per trader, un quarto per chi coordina una squadra." locale="it">
+<PageLayout title="Prezzi" description="Un piano gratuito, tre piani mensili e l'attivazione funded una tantum." locale="it">
   <section class="bg-paper px-8 pt-32 pb-12">
     <div class="max-w-[1200px] mx-auto text-center">
       <h1 class="text-[clamp(28px,4vw,64px)] font-display font-medium tracking-[-0.01em] leading-[1.05] mb-6">Prezzi.</h1>
       <p class="text-xl text-ink/60 max-w-2xl mx-auto font-medium">
-        I piani si attivano sugli account funded. Per gli account in evaluation la gestione operativa è gratuita.
+        Parti gratis dal gestionale. I piani mensili sbloccano gestione illimitata, operatività e copertura. L'attivazione funded è una fee una tantum.
       </p>
     </div>
   </section>

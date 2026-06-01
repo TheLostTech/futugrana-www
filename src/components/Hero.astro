@@ -14,24 +14,26 @@ const t = locale === "it"
   ? {
       toggleTrader: "Trader",
       toggleManager: "Gestore",
-      title: "Automazione operativa<br>per trader futures.",
-      sub: "Sincronizzazione operativa, multi-provider e gestione event-driven in tempo reale. Il controllo resta al trader. L'infrastruttura pensa al coordinamento.",
+      title: "Una piattaforma operativa<br>per gestire le tue prop firm.",
+      sub: "Traccia acquisti, fasi, costi e payout. Quando serve, operi dalla dashboard e coordini la copertura broker. Le decisioni restano sempre al trader.",
       ctaPrimary: "Inizia gratis →",
-      ctaMicro: "Provala gratis. Il piano si attiva solo sugli account funded.",
+      ctaMicro: "Nessuna carta richiesta. Parti dal gestionale, aggiorni quando ti serve operare.",
       ctaSecondary: "Scopri la piattaforma",
-      wordLeft: "infrastruttura",
+      chips: ["Gestionale", "Console operativa", "Copertura broker", "Registro", "Multi-provider"],
+      wordLeft: "piattaforma",
       wordRight: "operativa",
     }
   : {
       toggleTrader: "Trader",
       toggleManager: "Manager",
-      title: "Operational automation<br>for futures traders.",
-      sub: "Operational sync, multi-provider and event-driven management in real time. Trading decisions stay with the trader. The infrastructure handles coordination.",
+      title: "An operational platform<br>to manage your prop firms.",
+      sub: "Track purchases, phases, costs and payouts. When you need to, operate from the dashboard and coordinate broker coverage. Decisions always stay with the trader.",
       ctaPrimary: "Start free →",
-      ctaMicro: "Try it free. The plan activates only on funded accounts.",
+      ctaMicro: "No card required. Start with the management tools, upgrade when you need to operate.",
       ctaSecondary: "Explore the platform",
+      chips: ["Management", "Operational console", "Broker coverage", "Record", "Multi-provider"],
       wordLeft: "operational",
-      wordRight: "infrastructure",
+      wordRight: "platform",
     };
 ---
 <ScenePatternA
@@ -69,6 +71,11 @@ const t = locale === "it"
         <p class="text-[12px] text-ink/55 leading-snug">{t.ctaMicro}</p>
         <a href={localizeUrl("/prezzi", locale)} class="text-sm text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent transition-colors">{t.ctaSecondary}</a>
       </div>
+      <ul class="flex flex-wrap gap-2 pt-1">
+        {t.chips.map((chip) => (
+          <li class="px-3 py-1.5 rounded-full border border-ink/15 text-[12px] font-medium text-ink/70">{chip}</li>
+        ))}
+      </ul>
     </div>
   </div>
 </div>

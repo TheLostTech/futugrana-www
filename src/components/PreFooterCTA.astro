@@ -7,14 +7,16 @@ const appUrl = "https://app.futugrana.com";
 
 const t = locale === "it"
   ? {
-      title: "Operare su più ambienti<br>non deve essere un caos.",
-      sub: "Collega i tuoi account e gestisci tutto da un'unica infrastruttura operativa. Niente carta di credito finché un account non passa a funded.",
+      title: "Gestire prop firm<br>non deve essere un caos.",
+      sub: "Parti gratis dal gestionale. Aggiungi operatività e copertura solo quando ti servono.",
       cta: "Inizia gratis →",
+      note: "Futugrana fornisce strumenti software di gestione e coordinamento operativo. Le decisioni di trading restano interamente in capo all'utente.",
     }
   : {
-      title: "Operating across multiple environments<br>shouldn't be chaos.",
-      sub: "Connect your accounts and manage everything from a single operational infrastructure. No credit card until an account goes funded.",
+      title: "Managing prop firms<br>shouldn't be chaos.",
+      sub: "Start free with the management tools. Add operations and coverage only when you need them.",
       cta: "Start free →",
+      note: "Futugrana provides operational management and coordination software. Trading decisions remain entirely with the user.",
     };
 ---
 <section class="bg-ink text-paper px-8 py-24 text-center relative" style="z-index: 25;">
@@ -22,5 +24,6 @@ const t = locale === "it"
     <h2 class="font-display font-medium text-[clamp(24px,3.5vw,60px)] tracking-[-0.01em] leading-[1.05] mb-8 text-center" set:html={t.title} />
     <p class="text-xl opacity-80 max-w-2xl mx-auto mb-10 font-medium">{t.sub}</p>
     <a href={`${appUrl}/signup?ref=prefooter`} class="inline-block px-12 py-5 bg-paper text-ink rounded-full font-semibold text-lg hover:opacity-90">{t.cta}</a>
+    <p class="mt-8 text-[12px] leading-snug text-paper/45 max-w-2xl mx-auto">{t.note}</p>
   </div>
 </section>

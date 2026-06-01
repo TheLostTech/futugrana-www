@@ -6,7 +6,7 @@ const appUrl = "https://app.futugrana.com";
 const steps = [
   { num: "01", title: "Registrati come promoter", desc: "Account gratuito. Ottieni un link di referral personale." },
   { num: "02", title: "Condividi il link", desc: "Sui tuoi canali (Telegram, social, DM). Chi clicca e si registra è tracciato come tuo." },
-  { num: "03", title: "Incassa", desc: "Commissione ricorrente quando il referral attiva uno slot pagante. Bonifico mensile sopra €50." },
+  { num: "03", title: "Incassa", desc: "Commissione ricorrente quando il referral attiva un piano a pagamento. Bonifico mensile sopra €50." },
 ];
 const tiers = [
   { label: "1-5 referral attivi", pct: "[%]", duration: "per sempre finché il referral paga", min: "€50/mese" },
@@ -22,7 +22,7 @@ const tiers = [
         Porta un trader.<br>Incassa con lui.
       </h1>
       <p class="text-xl opacity-80 max-w-2xl mx-auto mb-12 font-medium">
-        Promuovi futugrana ai trader che conosci. Quando uno di loro passa a FUNDED e attiva uno slot, prendi una commissione ricorrente.
+        Promuovi futugrana ai trader che conosci. Quando uno di loro attiva un piano a pagamento, prendi una commissione ricorrente.
       </p>
       <a href={`${appUrl}/signup?role=promoter`} class="inline-block px-9 py-4 bg-paper text-blu rounded-full font-bold hover:opacity-90">
         Diventa partner →

@@ -1,5 +1,5 @@
 ---
-import { localizeUrl, type Locale } from "../lib/i18n";
+import type { Locale } from "../lib/i18n";
 
 interface Props {
   locale: Locale;
@@ -8,100 +8,171 @@ interface Props {
 const { locale } = Astro.props;
 const appUrl = "https://app.futugrana.com";
 
+type Badge = "chosen" | "complete" | undefined;
+
 interface Card {
   name: string;
+  planCode: string;
   price: string;
   sub: string;
   bullets: string[];
-  featured?: boolean;
-  isContact?: boolean;
+  excludes?: string[];
+  badge?: Badge;
+  free?: boolean;
 }
 
 const t = locale === "it"
   ? {
       title: "Scegli il tuo piano.",
-      sub: "Tutti i piani includono dashboard, esecuzione, multi-provider e registro operativo. La gestione per gli account in evaluation è gratuita; i piani si attivano sugli account funded.",
+      sub: "Parti gratis dal gestionale. Aggiungi operatività e copertura solo quando ti servono. Le decisioni di trading restano sempre al trader.",
       mostChosen: "PIÙ SCELTO",
-      contactCta: "Scopri di più →",
-      startCta: "Inizia gratis →",
+      complete: "COMPLETO",
       perMonth: "/mese",
+      startCta: "Inizia gratis →",
+      activateCta: "Attiva piano →",
+      excludesLabel: "Non incluso",
       cards: [
-        { name: "Solo",        price: "€150",        sub: "1 slot · setup minimo",       bullets: ["1 account funded coordinato", "Dashboard, esecuzione, multi-provider", "Registro operativo integrato", "Account in evaluation sempre gratis"] },
-        { name: "Team",        price: "€300",        sub: "3 slot · multi-account",      bullets: ["3 account funded in parallelo", "+ tutto del Solo", "Vista aggregata su più ambienti"], featured: true },
-        { name: "Squadra",     price: "€400",        sub: "5 slot · operatività estesa", bullets: ["5 account funded in parallelo", "+ tutto del Team", "Supporto prioritario"] },
-        { name: "Per Gestori", price: "Contattaci", sub: "Coordini una squadra di trader", bullets: ["Multi-trader con scoping per ognuno", "Dashboard aggregata", "Pricing concordato in base a trader e slot necessari"], isContact: true },
+        {
+          name: "Free", planCode: "free", price: "Gratis", sub: "Per iniziare a tracciare", free: true,
+          bullets: ["Tracking base delle prop firm", "Dashboard personale", "Storico essenziale"],
+          excludes: ["Operatività dalla dashboard", "Copertura broker/slave"],
+        },
+        {
+          name: "Gestionale Illimitato", planCode: "management_990", price: "€9,90", sub: "Le tue prop firm, ordinate",
+          bullets: ["Prop firm illimitate", "Acquisti, fasi e costi", "Cash flow, payout e movimenti", "Storico e contabilità collegata"],
+          excludes: ["Operatività dalla dashboard", "Copertura broker/slave"],
+        },
+        {
+          name: "Gestionale + Opera Prop", planCode: "prop_execution_1990", price: "€19,90", sub: "Opera quando lo decidi tu", badge: "chosen",
+          bullets: ["Tutto del Gestionale Illimitato", "«Opera» dalla dashboard", "Esecuzione sulla sola gamba prop/master", "Operazioni collegate alla contabilità"],
+          excludes: ["Gamba broker/slave", "Copertura broker"],
+        },
+        {
+          name: "Eval Coverage", planCode: "eval_coverage_4990", price: "€49,90", sub: "Copertura completa per le evaluation", badge: "complete",
+          bullets: ["Tutto del piano Opera Prop", "Quick Trade completo prop + broker/slave", "Copertura sul conto broker collegato", "Coordinamento multi-provider", "Log operativo e riconciliazione"],
+        },
       ] as Card[],
+      funded: {
+        eyebrow: "Funded Activation · una tantum",
+        text: "Quando un account passa funded, l'attivazione funded è una fee una tantum legata a quell'account.",
+        tiers: ["25K · $5", "50K · $10", "100K e oltre · $15"],
+      },
     }
   : {
       title: "Choose your plan.",
-      sub: "All plans include dashboard, execution, multi-provider and operational record. Evaluation accounts are free; plans activate on funded accounts.",
+      sub: "Start free with the management tools. Add operations and coverage only when you need them. Trading decisions always stay with the trader.",
       mostChosen: "MOST CHOSEN",
-      contactCta: "Learn more →",
-      startCta: "Start free →",
+      complete: "COMPLETE",
       perMonth: "/month",
+      startCta: "Start free →",
+      activateCta: "Activate plan →",
+      excludesLabel: "Not included",
       cards: [
-        { name: "Solo",         price: "€150",       sub: "1 slot · minimal setup",        bullets: ["1 funded account coordinated", "Dashboard, execution, multi-provider", "Built-in operational record", "Evaluation accounts always free"] },
-        { name: "Team",         price: "€300",       sub: "3 slots · multi-account",       bullets: ["3 funded accounts in parallel", "+ everything in Solo", "Aggregated view across environments"], featured: true },
-        { name: "Squadra",      price: "€400",       sub: "5 slots · extended operations", bullets: ["5 funded accounts in parallel", "+ everything in Team", "Priority support"] },
-        { name: "For Managers", price: "Contact us", sub: "Coordinate a team of traders",  bullets: ["Multi-trader scoping per user", "Aggregated dashboard", "Custom pricing based on traders & slots needed"], isContact: true },
+        {
+          name: "Free", planCode: "free", price: "Free", sub: "Start tracking", free: true,
+          bullets: ["Basic prop firm tracking", "Personal dashboard", "Essential history"],
+          excludes: ["Operating from the dashboard", "Broker/slave coverage"],
+        },
+        {
+          name: "Unlimited Management", planCode: "management_990", price: "€9,90", sub: "Your prop firms, in order",
+          bullets: ["Unlimited prop firms", "Purchases, phases and costs", "Cash flow, payout and movements", "History and linked bookkeeping"],
+          excludes: ["Operating from the dashboard", "Broker/slave coverage"],
+        },
+        {
+          name: "Management + Operate Prop", planCode: "prop_execution_1990", price: "€19,90", sub: "Operate when you decide", badge: "chosen",
+          bullets: ["Everything in Unlimited Management", "“Operate” from the dashboard", "Execution on the prop/master leg only", "Operations linked to bookkeeping"],
+          excludes: ["Broker/slave leg", "Broker coverage"],
+        },
+        {
+          name: "Eval Coverage", planCode: "eval_coverage_4990", price: "€49,90", sub: "Full coverage for evaluations", badge: "complete",
+          bullets: ["Everything in Operate Prop", "Full Quick Trade prop + broker/slave", "Coverage on the connected broker account", "Multi-provider coordination", "Operational log and reconciliation"],
+        },
       ] as Card[],
+      funded: {
+        eyebrow: "Funded Activation · one-time",
+        text: "When an account goes funded, funded activation is a one-time fee tied to that specific account.",
+        tiers: ["25K · $5", "50K · $10", "100K and above · $15"],
+      },
     };
 ---
 <section class="relative bg-paper px-8 py-28" style="z-index: 25;">
-  <div class="max-w-[1200px] mx-auto">
+  <div class="max-w-[1280px] mx-auto">
     <div class="text-center mb-16">
       <h2 class="font-display font-medium text-[clamp(28px,3vw,44px)] tracking-[-0.01em] leading-tight mb-5 text-ink">{t.title}</h2>
       <p class="text-base text-muted max-w-2xl mx-auto leading-relaxed" set:html={t.sub} />
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
       {t.cards.map((c) => {
-        const cardClass = c.isContact
-          ? "bg-ink text-paper border border-white/10"
-          : c.featured
-            ? "bg-accent-soft border border-accent/40"
+        const cardClass = c.badge === "complete"
+          ? "bg-accent-soft border border-accent/40"
+          : c.badge === "chosen"
+            ? "bg-positive-soft border border-positive/45"
             : "bg-surface border border-border";
-        const subTextClass = c.isContact ? "text-paper/70" : "text-muted";
-        const bulletTextClass = c.isContact ? "text-paper/85" : "text-ink/80";
-        const checkClass = c.isContact ? "text-paper/50" : "text-accent";
-        const ctaClass = c.isContact
-          ? "bg-paper text-ink hover:bg-paper/90"
-          : c.featured
-            ? "bg-accent text-paper hover:bg-accent-hover"
+        const checkClass = c.badge === "complete"
+          ? "text-accent"
+          : c.badge === "chosen"
+            ? "text-positive"
+            : "text-ink/60";
+        const ctaClass = c.badge === "complete"
+          ? "bg-accent text-paper hover:bg-accent-hover"
+          : c.badge === "chosen"
+            ? "bg-positive text-white hover:bg-positive-hover"
             : "bg-ink text-paper hover:opacity-90";
         return (
-          <div class:list={["relative rounded-2xl p-8 md:p-10 flex flex-col gap-6 transition-shadow hover:shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_-8px_rgba(15,23,42,0.08)]", cardClass]}>
-            {c.featured && (
-              <div class="absolute -top-2.5 right-6 px-2.5 py-1 bg-accent text-paper text-[10px] font-semibold tracking-[0.18em] rounded-full">{t.mostChosen}</div>
+          <div class:list={["relative rounded-2xl p-7 md:p-8 flex flex-col gap-6 transition-shadow hover:shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_-8px_rgba(15,23,42,0.08)]", cardClass]}>
+            {c.badge === "chosen" && (
+              <div class="absolute -top-2.5 right-6 px-2.5 py-1 bg-positive text-white text-[10px] font-semibold tracking-[0.18em] rounded-full">{t.mostChosen}</div>
+            )}
+            {c.badge === "complete" && (
+              <div class="absolute -top-2.5 right-6 px-2.5 py-1 bg-accent text-paper text-[10px] font-semibold tracking-[0.18em] rounded-full">{t.complete}</div>
             )}
             <div>
-              <h3 class="text-xl font-semibold tracking-tight mb-1.5">{c.name}</h3>
-              <p class:list={["text-sm leading-relaxed", subTextClass]}>{c.sub}</p>
+              <h3 class="text-xl font-semibold tracking-tight mb-1.5 text-ink">{c.name}</h3>
+              <p class="text-sm leading-relaxed text-muted">{c.sub}</p>
             </div>
             <div class="flex items-baseline gap-1">
-              <span class="text-4xl font-semibold tracking-tight tabular-nums">{c.price}</span>
-              {!c.isContact && <span class:list={["text-sm font-medium", subTextClass]}>{t.perMonth}</span>}
+              <span class="text-4xl font-semibold tracking-tight tabular-nums text-ink">{c.price}</span>
+              {!c.free && <span class="text-sm font-medium text-muted">{t.perMonth}</span>}
             </div>
-            <ul class:list={["space-y-2.5 flex-1 text-sm leading-relaxed", bulletTextClass]}>
+            <ul class="space-y-2.5 flex-1 text-sm leading-relaxed text-ink/80">
               {c.bullets.map((b) => (
                 <li class="flex items-start gap-2.5">
                   <span class:list={["mt-0.5 inline-flex w-4 h-4 items-center justify-center text-[11px] font-semibold", checkClass]}>✓</span>
                   <span>{b}</span>
                 </li>
               ))}
+              {c.excludes && c.excludes.map((e) => (
+                <li class="flex items-start gap-2.5 text-ink/40">
+                  <span class="mt-0.5 inline-flex w-4 h-4 items-center justify-center text-[11px] font-semibold">✕</span>
+                  <span>{e}</span>
+                </li>
+              ))}
             </ul>
             <a
-              href={c.isContact ? localizeUrl("/per-gestori", locale) : `${appUrl}/signup?ref=pricing-${c.name.toLowerCase()}`}
+              href={`${appUrl}/signup?ref=pricing-${c.planCode}`}
               class:list={[
                 "inline-block text-center px-5 py-3 rounded-full text-sm font-semibold transition-colors",
                 ctaClass,
               ]}
             >
-              {c.isContact ? t.contactCta : t.startCta}
+              {c.free ? t.startCta : t.activateCta}
             </a>
           </div>
         );
       })}
+    </div>
+
+    <div class="mt-6 rounded-3xl bg-ink text-paper px-7 py-8 md:px-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div class="max-w-2xl">
+        <p class="text-[11px] uppercase tracking-[0.18em] text-accent mb-2">{t.funded.eyebrow}</p>
+        <p class="text-base leading-relaxed text-paper/85">{t.funded.text}</p>
+      </div>
+      <div class="flex flex-wrap gap-2.5 shrink-0">
+        {t.funded.tiers.map((tier) => (
+          <span class="px-4 py-2 rounded-full border border-white/15 text-sm font-semibold tabular-nums">{tier}</span>
+        ))}
+      </div>
     </div>
   </div>
 </section>
