@@ -1,13 +1,26 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
-import EnPlaceholderBanner from "../../components/EnPlaceholderBanner.astro";
+import LegalDoc, { type LegalSection } from "../../components/LegalDoc.astro";
+
+const sections: LegalSection[] = [
+  { h: "What cookies are", p: ["Cookies are small files saved on your device that let the site work and remember some preferences."] },
+  { h: "Cookies we use", list: [
+    "<strong>Technical (necessary):</strong> authentication, security and basic functioning. They do not require consent.",
+    "<strong>Preferences:</strong> language (it/en), light/dark theme and interface settings.",
+    "<strong>Analytics:</strong> aggregated and, where possible, anonymised usage statistics. They require consent.",
+  ]},
+  { h: "Third-party cookies", p: ["Some services we integrate (e.g. payment providers) may set their own cookies, governed by their respective policies."] },
+  { h: "Consent management", p: ["On first access you can accept or refuse non-necessary cookies. You can change your choices at any time from your browser settings or the dedicated banner."] },
+  { h: "Duration", p: ["Technical cookies last for the session or a few days; preferences and analytics have the duration indicated in the consent banner."] },
+  { h: "Contact", p: ["For questions about cookies write to <strong>privacy@futugrana.com</strong>."] },
+];
 ---
-<PageLayout title="Cookie" description="Cookie policy." locale="en">
-  <EnPlaceholderBanner />
-  <section class="bg-paper px-8 pt-32 pb-24">
-    <div class="max-w-[760px] mx-auto">
-      <h1 class="text-[clamp(24px,3vw,48px)] font-display font-medium tracking-[-0.01em] leading-[1.05] mb-8 text-center">Cookie.</h1>
-      <p class="text-base text-ink/70 italic">Document in progress.</p>
-    </div>
-  </section>
+<PageLayout title="Cookie Policy" description="How Futugrana uses cookies and similar technologies." locale="en">
+  <LegalDoc
+    title="Cookie Policy"
+    updated="1 June 2026"
+    intro="This page explains how Futugrana uses cookies and similar technologies on the website and in the platform."
+    sections={sections}
+    locale="en"
+  />
 </PageLayout>

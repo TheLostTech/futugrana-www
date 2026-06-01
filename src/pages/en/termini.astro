@@ -1,13 +1,31 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
-import EnPlaceholderBanner from "../../components/EnPlaceholderBanner.astro";
+import LegalDoc, { type LegalSection } from "../../components/LegalDoc.astro";
+
+const sections: LegalSection[] = [
+  { h: "Scope of the service", p: ["Futugrana is a software platform for the <strong>operational management and coordination</strong> of prop firm accounts: tracking purchases, phases, costs, payouts and movements; execution of <strong>explicit commands</strong> issued by the user; multi-provider coordination and broker/slave coverage on the plans that include it; operational record and accounting reconciliation."] },
+  { h: "What Futugrana is NOT", p: ["Futugrana <strong>is not a financial intermediary, is not a prop firm, is not a broker and is not a financial advisor.</strong> It does not make trading decisions, does not generate signals, does not promise results and does not manage capital on the user's behalf. <strong>Trading decisions remain entirely with the user.</strong>"] },
+  { h: "Account and eligibility", p: ["To use the service you must be at least 18 years old and provide truthful information. You are responsible for keeping your credentials confidential and for all activity carried out by your account."] },
+  { h: "Plans and payments", list: [
+    "The <strong>Free</strong> plan is free; paid plans are listed on the Pricing page.",
+    "<strong>Funded activation</strong> is a one-time fee tied to the individual account that goes funded.",
+    "Payments are handled through third-party providers (e.g. Stripe). Subscriptions renew automatically unless cancelled.",
+    "Save for statutory rights, fees paid are not refundable on a pro-rata basis.",
+  ]},
+  { h: "Acceptable use", p: ["You agree not to use the service for unlawful purposes, not to circumvent its security measures and to comply with the terms of the prop firms and providers you connect. Using the service does not exempt you from complying with the rules of the third parties you operate with."] },
+  { h: "Third-party connections", p: ["You connect prop firms, execution providers and brokers yourself. Futugrana coordinates and executes the commands you issue, but is not responsible for the decisions, rules or availability of those third parties."] },
+  { h: "Limitation of liability", p: ["The service is provided “as is”. To the extent permitted by law, Futugrana is not liable for trading losses, lost profits, the user's operational decisions or malfunctions of third-party providers. Our total liability is limited to what was paid for the service in the last twelve months."] },
+  { h: "Suspension and termination", p: ["You can close your account at any time. We may suspend or close accounts that violate these Terms or put the service at risk."] },
+  { h: "Changes to the Terms", p: ["We may update these Terms with reasonable notice. Continued use after the update constitutes acceptance."] },
+  { h: "Governing law", p: ["These Terms are governed by Italian law. The competent court is that of the place where the controller is based, save for mandatory consumer-protection rules."] },
+];
 ---
-<PageLayout title="Terms" description="Terms and conditions." locale="en">
-  <EnPlaceholderBanner />
-  <section class="bg-paper px-8 pt-32 pb-24">
-    <div class="max-w-[760px] mx-auto">
-      <h1 class="text-[clamp(24px,3vw,48px)] font-display font-medium tracking-[-0.01em] leading-[1.05] mb-8 text-center">Terms.</h1>
-      <p class="text-base text-ink/70 italic">Document in progress. Contact <a href="mailto:legal@futugrana.com" class="underline">legal@futugrana.com</a>.</p>
-    </div>
-  </section>
+<PageLayout title="Terms of Service" description="The terms governing the use of the Futugrana platform and website." locale="en">
+  <LegalDoc
+    title="Terms of Service"
+    updated="1 June 2026"
+    intro="These Terms govern the use of the Futugrana platform and website. By using the service you accept these Terms."
+    sections={sections}
+    locale="en"
+  />
 </PageLayout>

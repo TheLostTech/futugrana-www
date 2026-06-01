@@ -1,13 +1,51 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
-import EnPlaceholderBanner from "../../components/EnPlaceholderBanner.astro";
+
+const categories = [
+  { title: "Pricing & trial", questions: [
+    { q: "How much does it cost to start?", a: "Nothing: the management tools are free. You only pay when you enable operations or coverage, or the one-time Funded Activation fee when an account goes funded." },
+    { q: "Can I change or cancel my plan?", a: "Yes, anytime from the dashboard. No minimum term." },
+  ]},
+  { title: "Technical setup", questions: [
+    { q: "Can I connect multiple providers?", a: "Yes. Tradovate, MetaApi (MT4/MT5) and ProjectX, even all together. Every connection is isolated." },
+    { q: "Do I need to install anything?", a: "No. Futugrana is a web app: you connect your accounts and operate from the dashboard." },
+  ]},
+  { title: "Operations & coverage", questions: [
+    { q: "Does Futugrana trade for me?", a: "No, never. The platform only executes explicit commands that you send, links them to your bookkeeping and coordinates the environments. No automated decisions, no signals, no capital management." },
+    { q: "What is broker/slave coverage?", a: "On the Eval Coverage plan, the platform coordinates the prop leg and the broker/slave leg according to the parameters you set, to align positions across environments." },
+  ]},
+  { title: "Funded accounts", questions: [
+    { q: "What happens when an account goes funded?", a: "The platform detects the new account ID and activates management on the corresponding slot. Funded activation is a one-time fee tied to that account: 25K $5, 50K $10, 100K and above $15." },
+  ]},
+  { title: "Data & support", questions: [
+    { q: "Is my data safe?", a: "Provider connections are isolated and encrypted. See the Privacy Policy for details on processing." },
+    { q: "How can I contact you?", a: "Email support@futugrana.com or via the official community on Telegram." },
+  ]},
+];
 ---
-<PageLayout title="FAQ" description="Frequently asked questions." locale="en">
-  <EnPlaceholderBanner />
+<PageLayout title="FAQ" description="Frequently asked questions about Futugrana." locale="en">
   <section class="bg-paper px-8 pt-32 pb-24">
     <div class="max-w-[800px] mx-auto">
       <h1 class="text-[clamp(28px,4vw,64px)] font-display font-medium tracking-[-0.01em] leading-[1.05] mb-16 text-center">FAQ.</h1>
-      <p class="text-base text-ink/50 italic">Content coming soon — see the Italian FAQ for now.</p>
+      {categories.map((cat) => (
+        <div class="mb-12">
+          <h2 class="text-xs uppercase tracking-[0.3em] text-ink/50 mb-6 font-semibold">{cat.title}</h2>
+          <div class="space-y-3">
+            {cat.questions.map((f) => (
+              <details class="bg-ink/[0.03] rounded-2xl p-6 group">
+                <summary class="font-bold text-lg list-none flex justify-between items-center cursor-pointer">
+                  <span>{f.q}</span>
+                  <span class="text-2xl group-open:rotate-45 transition-transform">+</span>
+                </summary>
+                <p class="text-base opacity-80 mt-4 font-medium leading-relaxed">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      ))}
+      <p class="text-base text-ink/50 italic mt-12">
+        Can't find the answer? Write to <a href="mailto:support@futugrana.com" class="underline">support@futugrana.com</a>.
+      </p>
     </div>
   </section>
 </PageLayout>

@@ -3,6 +3,7 @@
 // Contenuto = bozza operativa allineata al posizionamento compliance: software
 // di gestione e coordinamento, mai decisioni di trading o gestione del capitale.
 // I testi vanno validati da un legale prima dell'uso commerciale (banner sotto).
+import type { Locale } from "../lib/i18n";
 export interface LegalSection {
   h: string;
   p?: string[];
@@ -13,16 +14,32 @@ interface Props {
   updated: string;
   intro?: string;
   sections: LegalSection[];
+  locale?: Locale;
 }
-const { title, updated, intro, sections } = Astro.props;
+const { title, updated, intro, sections, locale = "it" } = Astro.props;
+const chrome = locale === "it"
+  ? {
+      updatedLabel: "Ultimo aggiornamento:",
+      draftStrong: "Bozza.",
+      draftText: " Questo documento è un modello operativo, non consulenza legale. Va validato da un legale prima dell'uso commerciale.",
+      contactPre: "Per domande su questo documento scrivi a ",
+      contactPost: ".",
+    }
+  : {
+      updatedLabel: "Last updated:",
+      draftStrong: "Draft.",
+      draftText: " This document is an operational template, not legal advice. It must be reviewed by a lawyer before commercial use.",
+      contactPre: "For questions about this document, write to ",
+      contactPost: ".",
+    };
 ---
 <div class="bg-paper">
   <section class="px-8 pt-32 pb-6">
     <div class="max-w-[800px] mx-auto">
       <h1 class="font-display font-medium tracking-[-0.01em] leading-[1.05] text-[clamp(30px,3.6vw,50px)] text-ink m-0">{title}</h1>
-      <p class="mt-3.5 text-[13px] font-mono text-ink/50">Ultimo aggiornamento: {updated}</p>
+      <p class="mt-3.5 text-[13px] font-mono text-ink/50">{chrome.updatedLabel} {updated}</p>
       <div class="mt-6 px-[18px] py-3.5 bg-accent-soft border border-accent/40 rounded-xl text-[13px] leading-relaxed text-ink/70">
-        <strong class="text-accent">Bozza.</strong> Questo documento è un modello operativo, non consulenza legale. Va validato da un legale prima dell'uso commerciale.
+        <strong class="text-accent">{chrome.draftStrong}</strong>{chrome.draftText}
       </div>
       {intro && <p class="mt-6 text-base leading-relaxed text-ink/70">{intro}</p>}
     </div>
@@ -51,7 +68,7 @@ const { title, updated, intro, sections } = Astro.props;
         </div>
       ))}
       <div class="mt-3 pt-6 border-t border-border text-sm text-muted">
-        Per domande su questo documento scrivi a <a href="mailto:legal@futugrana.com" class="text-accent underline underline-offset-2">legal@futugrana.com</a>.
+        {chrome.contactPre}<a href="mailto:legal@futugrana.com" class="text-accent underline underline-offset-2">legal@futugrana.com</a>{chrome.contactPost}
       </div>
     </div>
   </section>
