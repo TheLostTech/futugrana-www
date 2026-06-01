@@ -1,0 +1,58 @@
+---
+// Documento legale strutturato (Privacy / Termini / Cookie).
+// Contenuto = bozza operativa allineata al posizionamento compliance: software
+// di gestione e coordinamento, mai decisioni di trading o gestione del capitale.
+// I testi vanno validati da un legale prima dell'uso commerciale (banner sotto).
+export interface LegalSection {
+  h: string;
+  p?: string[];
+  list?: string[];
+}
+interface Props {
+  title: string;
+  updated: string;
+  intro?: string;
+  sections: LegalSection[];
+}
+const { title, updated, intro, sections } = Astro.props;
+---
+<div class="bg-paper">
+  <section class="px-8 pt-32 pb-6">
+    <div class="max-w-[800px] mx-auto">
+      <h1 class="font-display font-medium tracking-[-0.01em] leading-[1.05] text-[clamp(30px,3.6vw,50px)] text-ink m-0">{title}</h1>
+      <p class="mt-3.5 text-[13px] font-mono text-ink/50">Ultimo aggiornamento: {updated}</p>
+      <div class="mt-6 px-[18px] py-3.5 bg-accent-soft border border-accent/40 rounded-xl text-[13px] leading-relaxed text-ink/70">
+        <strong class="text-accent">Bozza.</strong> Questo documento è un modello operativo, non consulenza legale. Va validato da un legale prima dell'uso commerciale.
+      </div>
+      {intro && <p class="mt-6 text-base leading-relaxed text-ink/70">{intro}</p>}
+    </div>
+  </section>
+
+  <section class="px-8 pt-4 pb-24">
+    <div class="max-w-[800px] mx-auto flex flex-col gap-[34px]">
+      {sections.map((s, i) => (
+        <div>
+          <h2 class="flex gap-2.5 m-0 mb-3 text-[13px] font-bold uppercase tracking-[0.06em] text-ink">
+            <span class="text-accent">{String(i + 1).padStart(2, "0")}</span>{s.h}
+          </h2>
+          {s.p && s.p.map((para, j) => (
+            <p class:list={["text-[15px] leading-[1.65] text-ink/70", j ? "mt-2.5" : ""]} set:html={para} />
+          ))}
+          {s.list && (
+            <ul class="mt-3 p-0 list-none flex flex-col gap-2">
+              {s.list.map((li) => (
+                <li class="flex gap-2.5 text-[15px] leading-[1.55] text-ink/70">
+                  <span class="text-accent font-bold flex-none">·</span>
+                  <span set:html={li} />
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))}
+      <div class="mt-3 pt-6 border-t border-border text-sm text-muted">
+        Per domande su questo documento scrivi a <a href="mailto:legal@futugrana.com" class="text-accent underline underline-offset-2">legal@futugrana.com</a>.
+      </div>
+    </div>
+  </section>
+</div>

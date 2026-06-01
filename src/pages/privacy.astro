@@ -1,16 +1,34 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
+import LegalDoc, { type LegalSection } from "../components/LegalDoc.astro";
+
+const sections: LegalSection[] = [
+  { h: "Titolare del trattamento", p: ["Il titolare del trattamento è Futugrana (di seguito “Futugrana” o “noi”). Per qualsiasi richiesta relativa ai dati personali è possibile scrivere a <strong>privacy@futugrana.com</strong>."] },
+  { h: "Dati che raccogliamo", list: [
+    "<strong>Dati di account:</strong> nome, email, credenziali, lingua e preferenze.",
+    "<strong>Dati operativi:</strong> prop firm e account collegati, acquisti, fasi, costi, payout, movimenti e comandi che invii esplicitamente dalla dashboard.",
+    "<strong>Dati di connessione ai provider:</strong> token e identificativi degli account presso Tradovate, MetaApi, ProjectX e broker collegati, conservati in forma cifrata.",
+    "<strong>Dati tecnici:</strong> log di accesso, indirizzo IP, tipo di dispositivo e browser.",
+  ]},
+  { h: "Finalità e basi giuridiche", p: ["Trattiamo i dati per erogare il servizio (esecuzione del contratto), per adempiere a obblighi di legge (es. contabili e fiscali), per sicurezza e prevenzione abusi (legittimo interesse) e, previo consenso, per comunicazioni di marketing."] },
+  { h: "Cosa NON facciamo", p: ["Futugrana è uno strumento software di gestione e coordinamento operativo. <strong>Non prendiamo decisioni di investimento, non eseguiamo operazioni in autonomia, non gestiamo il tuo capitale e non forniamo segnali o consulenza finanziaria.</strong> Ogni comando parte da una tua azione esplicita."] },
+  { h: "Conservazione", p: ["Conserviamo i dati per il tempo necessario alle finalità descritte e, ove richiesto, per i termini di legge (es. dieci anni per i documenti contabili). Alla chiusura dell'account i dati non più necessari vengono cancellati o anonimizzati."] },
+  { h: "Condivisione con terzi", list: [
+    "Fornitori di infrastruttura e hosting, sotto accordo di trattamento (DPA).",
+    "Provider di pagamento (es. Stripe) per la gestione degli abbonamenti.",
+    "Provider di esecuzione e broker che <em>tu</em> colleghi, limitatamente a quanto necessario al coordinamento.",
+  ]},
+  { h: "Trasferimenti extra-UE", p: ["Eventuali trasferimenti fuori dallo Spazio Economico Europeo avvengono solo verso fornitori che garantiscono misure adeguate (es. Clausole Contrattuali Standard)."] },
+  { h: "I tuoi diritti", p: ["Hai diritto di accesso, rettifica, cancellazione, limitazione, portabilità e opposizione, oltre al diritto di reclamo all'Autorità Garante. Per esercitarli scrivi a <strong>privacy@futugrana.com</strong>."] },
+  { h: "Sicurezza", p: ["Adottiamo misure tecniche e organizzative adeguate: cifratura dei token dei provider, controllo degli accessi e isolamento delle connessioni per ciascun account."] },
+  { h: "Modifiche", p: ["Possiamo aggiornare questa informativa. La versione in vigore è sempre pubblicata su questa pagina con la data di ultimo aggiornamento."] },
+];
 ---
-<PageLayout title="Privacy" description="Informativa privacy." locale="it">
-  <section class="bg-paper px-8 pt-32 pb-24">
-    <div class="max-w-[760px] mx-auto">
-      <h1 class="text-[clamp(24px,3vw,48px)] font-display font-medium tracking-[-0.01em] leading-[1.05] mb-8 text-center">Privacy.</h1>
-      <p class="text-base text-ink/70 mb-4 italic">
-        Documento in lavorazione. Sarà sostituito con la versione redatta da un avvocato prima del lancio commerciale.
-      </p>
-      <p class="text-base text-ink/70">
-        Per domande contatta <a href="mailto:privacy@futugrana.com" class="underline">privacy@futugrana.com</a>.
-      </p>
-    </div>
-  </section>
+<PageLayout title="Informativa Privacy" description="Come Futugrana tratta i dati personali, ai sensi del GDPR." locale="it">
+  <LegalDoc
+    title="Informativa Privacy"
+    updated="1 giugno 2026"
+    intro="La presente informativa descrive come Futugrana tratta i dati personali degli utenti della piattaforma e del sito, ai sensi del Regolamento (UE) 2016/679 (GDPR)."
+    sections={sections}
+  />
 </PageLayout>

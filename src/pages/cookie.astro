@@ -1,16 +1,25 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
+import LegalDoc, { type LegalSection } from "../components/LegalDoc.astro";
+
+const sections: LegalSection[] = [
+  { h: "Cosa sono i cookie", p: ["I cookie sono piccoli file salvati sul tuo dispositivo che permettono al sito di funzionare e di ricordare alcune preferenze."] },
+  { h: "Cookie che usiamo", list: [
+    "<strong>Tecnici (necessari):</strong> autenticazione, sicurezza e funzionamento di base. Non richiedono consenso.",
+    "<strong>Preferenze:</strong> lingua (it/en), tema chiaro/scuro e impostazioni dell'interfaccia.",
+    "<strong>Analitici:</strong> statistiche d'uso aggregate e, ove possibile, anonimizzate. Richiedono consenso.",
+  ]},
+  { h: "Cookie di terze parti", p: ["Alcuni servizi che integriamo (es. provider di pagamento) possono impostare cookie propri, regolati dalle rispettive policy."] },
+  { h: "Gestione del consenso", p: ["Al primo accesso puoi accettare o rifiutare i cookie non necessari. Puoi modificare le scelte in qualsiasi momento dalle impostazioni del browser o dal banner dedicato."] },
+  { h: "Durata", p: ["I cookie tecnici durano la sessione o pochi giorni; le preferenze e gli analitici hanno durata indicata nel banner di consenso."] },
+  { h: "Contatti", p: ["Per domande sui cookie scrivi a <strong>privacy@futugrana.com</strong>."] },
+];
 ---
-<PageLayout title="Cookie" description="Cookie policy." locale="it">
-  <section class="bg-paper px-8 pt-32 pb-24">
-    <div class="max-w-[760px] mx-auto">
-      <h1 class="text-[clamp(24px,3vw,48px)] font-display font-medium tracking-[-0.01em] leading-[1.05] mb-8 text-center">Cookie.</h1>
-      <p class="text-base text-ink/70 mb-4 italic">
-        Documento in lavorazione. Sarà sostituito con la versione redatta da un avvocato prima del lancio commerciale.
-      </p>
-      <p class="text-base text-ink/70">
-        Per domande contatta <a href="mailto:privacy@futugrana.com" class="underline">privacy@futugrana.com</a>.
-      </p>
-    </div>
-  </section>
+<PageLayout title="Cookie Policy" description="Come Futugrana utilizza cookie e tecnologie simili." locale="it">
+  <LegalDoc
+    title="Cookie Policy"
+    updated="1 giugno 2026"
+    intro="Questa pagina spiega come Futugrana utilizza cookie e tecnologie simili sul sito e nella piattaforma."
+    sections={sections}
+  />
 </PageLayout>

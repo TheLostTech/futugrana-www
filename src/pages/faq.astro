@@ -3,16 +3,23 @@ import PageLayout from "../layouts/PageLayout.astro";
 
 const categories = [
   { title: "Prezzi & prova", questions: [
-    { q: "Quanto costa iniziare?", a: "Il piano Free è gratuito per gestione base e tracking. I piani mensili partono da €9,90 e sbloccano gestione illimitata; operatività dalla dashboard e copertura broker arrivano dai piani superiori." },
+    { q: "Quanto costa iniziare?", a: "Niente: il gestionale è gratis. Paghi solo quando attivi operatività o copertura, oppure la fee una tantum di Funded Activation quando un account passa funded." },
+    { q: "Posso cambiare o disdire il piano?", a: "Sì, in qualsiasi momento dalla dashboard. Nessun vincolo di durata." },
   ]},
   { title: "Setup tecnico", questions: [
-    { q: "Posso collegare più provider?", a: "Sì. Tradovate, MetaApi (MT4/MT5) e ProjectX, anche tutti insieme." },
+    { q: "Posso collegare più provider?", a: "Sì. Tradovate, MetaApi (MT4/MT5) e ProjectX, anche tutti insieme. Ogni connessione è isolata." },
+    { q: "Serve installare qualcosa?", a: "No. Futugrana è una web app: colleghi gli account e operi dalla dashboard." },
+  ]},
+  { title: "Operatività & copertura", questions: [
+    { q: "Futugrana fa trading al posto mio?", a: "No, mai. La piattaforma esegue solo comandi espliciti che invii tu, li collega alla contabilità e coordina gli ambienti. Nessuna decisione automatica, nessun segnale, nessuna gestione del capitale." },
+    { q: "Cos'è la copertura broker/slave?", a: "Nel piano Eval Coverage, la piattaforma coordina la gamba prop e la gamba broker/slave secondo i parametri che imposti tu, per allineare le posizioni tra ambienti." },
   ]},
   { title: "Account funded", questions: [
-    { q: "Cosa succede quando un account passa a funded?", a: "Quando la prop firm assegna un nuovo account ID, il sistema lo rileva automaticamente e lo colleghi al tuo piano. L'attivazione funded è una fee una tantum legata a quell'account (25K $5, 50K $10, 100K e oltre $15)." },
+    { q: "Cosa succede quando un account passa funded?", a: "La piattaforma rileva il nuovo account ID e attiva la gestione sullo slot corrispondente. L'attivazione funded è una fee una tantum legata a quell'account: 25K $5, 50K $10, 100K e oltre $15." },
   ]},
-  { title: "Supporto", questions: [
-    { q: "Come posso contattarvi?", a: "Email a support@futugrana.com, Telegram via la community ufficiale." },
+  { title: "Dati & supporto", questions: [
+    { q: "I miei dati sono al sicuro?", a: "Le connessioni ai provider sono isolate e cifrate. Vedi l'Informativa Privacy per i dettagli sul trattamento." },
+    { q: "Come posso contattarvi?", a: "Email a support@futugrana.com o tramite la community ufficiale su Telegram." },
   ]},
 ];
 ---
@@ -37,7 +44,7 @@ const categories = [
         </div>
       ))}
       <p class="text-base text-ink/50 italic mt-12">
-        Altre domande verranno aggiunte dopo i primi clienti. Apri una issue su GitHub o scrivi a support@futugrana.com.
+        Non trovi la risposta? Scrivi a <a href="mailto:support@futugrana.com" class="underline">support@futugrana.com</a>.
       </p>
     </div>
   </section>

@@ -1,16 +1,30 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
+import LegalDoc, { type LegalSection } from "../components/LegalDoc.astro";
+
+const sections: LegalSection[] = [
+  { h: "Oggetto del servizio", p: ["Futugrana è una piattaforma software per la <strong>gestione e il coordinamento operativo</strong> di account prop firm: tracciamento di acquisti, fasi, costi, payout e movimenti; esecuzione di <strong>comandi espliciti</strong> impartiti dall'utente; coordinamento multi-provider e copertura broker/slave nei piani che la prevedono; registro operativo e riconciliazione contabile."] },
+  { h: "Cosa Futugrana NON è", p: ["Futugrana <strong>non è un intermediario finanziario, non è una prop firm, non è un broker e non è un consulente finanziario.</strong> Non prende decisioni di trading, non genera segnali, non promette risultati e non gestisce capitale per conto dell'utente. <strong>Le decisioni di trading restano interamente in capo all'utente.</strong>"] },
+  { h: "Account e idoneità", p: ["Per usare il servizio devi avere almeno 18 anni e fornire informazioni veritiere. Sei responsabile della riservatezza delle credenziali e di ogni attività svolta dal tuo account."] },
+  { h: "Piani e pagamenti", list: [
+    "Il piano <strong>Free</strong> è gratuito; i piani a pagamento sono indicati nella pagina Prezzi.",
+    "L'<strong>attivazione funded</strong> è una fee una tantum legata al singolo account che passa funded.",
+    "I pagamenti sono gestiti tramite provider terzi (es. Stripe). Gli abbonamenti si rinnovano automaticamente salvo disdetta.",
+    "Salvo diritti di legge, le fee versate non sono rimborsabili pro-quota.",
+  ]},
+  { h: "Uso accettabile", p: ["Ti impegni a non usare il servizio per scopi illeciti, a non aggirarne le misure di sicurezza e a rispettare i termini delle prop firm e dei provider che colleghi. L'uso del servizio non ti esonera dal rispetto delle regole dei soggetti terzi con cui operi."] },
+  { h: "Connessioni di terze parti", p: ["Colleghi tu stesso prop firm, provider di esecuzione e broker. Futugrana coordina ed esegue i comandi che impartisci, ma non è responsabile delle decisioni, delle regole o della disponibilità di tali soggetti terzi."] },
+  { h: "Limitazione di responsabilità", p: ["Il servizio è fornito “così com'è”. Nei limiti consentiti dalla legge, Futugrana non risponde di perdite di trading, mancati guadagni, decisioni operative dell'utente o malfunzionamenti di provider terzi. La nostra responsabilità complessiva è limitata a quanto pagato per il servizio negli ultimi dodici mesi."] },
+  { h: "Sospensione e recesso", p: ["Puoi chiudere l'account in qualsiasi momento. Possiamo sospendere o chiudere account che violano questi Termini o mettono a rischio il servizio."] },
+  { h: "Modifiche ai Termini", p: ["Possiamo aggiornare questi Termini dando preavviso ragionevole. L'uso continuato dopo l'aggiornamento costituisce accettazione."] },
+  { h: "Legge applicabile", p: ["I presenti Termini sono regolati dalla legge italiana. Foro competente quello del luogo in cui ha sede il titolare, salvo norme inderogabili a tutela del consumatore."] },
+];
 ---
-<PageLayout title="Termini" description="Termini e condizioni." locale="it">
-  <section class="bg-paper px-8 pt-32 pb-24">
-    <div class="max-w-[760px] mx-auto">
-      <h1 class="text-[clamp(24px,3vw,48px)] font-display font-medium tracking-[-0.01em] leading-[1.05] mb-8 text-center">Termini.</h1>
-      <p class="text-base text-ink/70 mb-4 italic">
-        Documento in lavorazione. Sarà sostituito con la versione redatta da un avvocato prima del lancio commerciale.
-      </p>
-      <p class="text-base text-ink/70">
-        Per domande contatta <a href="mailto:legal@futugrana.com" class="underline">legal@futugrana.com</a>.
-      </p>
-    </div>
-  </section>
+<PageLayout title="Termini di Servizio" description="I termini che regolano l'uso della piattaforma e del sito Futugrana." locale="it">
+  <LegalDoc
+    title="Termini di Servizio"
+    updated="1 giugno 2026"
+    intro="I presenti Termini regolano l'uso della piattaforma e del sito Futugrana. Utilizzando il servizio accetti questi Termini."
+    sections={sections}
+  />
 </PageLayout>
