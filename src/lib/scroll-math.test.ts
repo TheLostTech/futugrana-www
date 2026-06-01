@@ -38,8 +38,9 @@ describe("sectionProgress", () => {
 });
 
 describe("patternAFrame", () => {
-  it("at progress 0 → card preview small, bottom -8%, title visible", () => {
+  it("at progress 0 → card preview small, growT 0, title visible", () => {
     const f = patternAFrame(0);
+    expect(f.growT).toBe(0);
     expect(f.cardWidth).toBe(50);
     expect(f.cardHeight).toBe(55);
     expect(f.cardBottom).toBe(-8);
@@ -48,8 +49,9 @@ describe("patternAFrame", () => {
     expect(f.wordsOpacity).toBe(0);
   });
 
-  it("at progress 0.30 → card fully expanded, title still visible", () => {
+  it("at progress 0.30 → growT 1, card fully expanded, title still visible", () => {
     const f = patternAFrame(0.30);
+    expect(f.growT).toBe(1);
     expect(f.cardWidth).toBe(100);
     expect(f.cardHeight).toBe(100);
     expect(f.cardBottom).toBe(0);

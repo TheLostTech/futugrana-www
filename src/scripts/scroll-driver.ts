@@ -31,6 +31,25 @@ function updatePatternASection(section: HTMLElement) {
     wR.style.opacity = String(f.wordsOpacity);
     wR.style.transform = `translateX(${f.wordRightX}px)`;
   }
+
+  // Card-internal titles that enter while the card expands.
+  // - top title: slides in from the left, ending at its rest position
+  // - bottom title: slides in from the right, ending at its rest position
+  // Tied to growT but accelerated (×2.2) so the titles arrive while the card
+  // is still ~half-grown rather than at full expansion — feels more energetic.
+  const titlesT = Math.min(f.growT * 2.2, 1);
+  const titleTL = section.querySelector<HTMLElement>("[data-hedge-tl]");
+  const titleBR = section.querySelector<HTMLElement>("[data-hedge-br]");
+  if (titleTL) {
+    const tlOffset = -(1 - titlesT) * 60;
+    titleTL.style.transform = `translateX(${tlOffset}vw)`;
+    titleTL.style.opacity = String(titlesT);
+  }
+  if (titleBR) {
+    const brOffset = (1 - titlesT) * 60;
+    titleBR.style.transform = `translateX(${brOffset}vw)`;
+    titleBR.style.opacity = String(titlesT);
+  }
 }
 
 function updateFlowSection(section: HTMLElement) {

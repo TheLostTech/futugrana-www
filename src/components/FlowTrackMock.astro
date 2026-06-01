@@ -1,15 +1,15 @@
 ---
 const rows = [
-  { name: "Lucid_03", tags: ["FUT","TDV","MA"], phase: "funded",  phaseClass: "bg-accent/10 text-accent border-accent/30",      balance: "+€54.079", change: "+€86,50",  status: "ready",   statusClass: "bg-accent/10 text-accent border-accent/30" },
+  { name: "Lucid_03", tags: ["FUT","TDV","MA"], phase: "funded",  phaseClass: "bg-accent/10 text-accent border-accent/30",      balance: "+€54.079", change: "+€86,50",  status: "ready",   statusClass: "bg-positive/10 text-positive border-positive/30" },
   { name: "Lucid_04", tags: ["FUT","TDV","MA"], phase: "funded",  phaseClass: "bg-accent/10 text-accent border-accent/30",      balance: "+€54.071", change: "+€153,00", status: "waiting", statusClass: "bg-white/[0.05] text-paper/55 border-white/15" },
-  { name: "Alpha_99", tags: ["FUT","TDV","MA"], phase: "fase 1",  phaseClass: "bg-white/[0.05] text-paper/55 border-white/15",  balance: "+€53.003", change: "+€22,42",  status: "ready",   statusClass: "bg-accent/10 text-accent border-accent/30" },
+  { name: "Alpha_99", tags: ["FUT","TDV","MA"], phase: "fase 1",  phaseClass: "bg-white/[0.05] text-paper/55 border-white/15",  balance: "+€53.003", change: "+€22,42",  status: "ready",   statusClass: "bg-positive/10 text-positive border-positive/30" },
 ];
 ---
 <div class="flex-1 bg-ink rounded-2xl border border-white/[0.06] overflow-hidden flex flex-col">
   <div class="px-5 pt-4 pb-3 border-b border-white/[0.06]">
     <div class="grid grid-cols-3 gap-3">
       <div>
-        <div class="text-[9px] uppercase tracking-[0.15em] text-paper/45 font-medium">Disponibilità broker</div>
+        <div class="text-[9px] uppercase tracking-[0.15em] text-paper/45 font-medium">Disponibilità provider</div>
         <div class="text-[13px] font-mono text-paper tabular-nums mt-1 tracking-tight">€9.916,60</div>
       </div>
       <div>
@@ -48,7 +48,7 @@ const rows = [
         </div>
         <div class="text-right">
           <div class="text-[11px] font-mono text-paper tabular-nums tracking-tight">{r.balance}</div>
-          <div class="text-[9px] font-mono text-accent tabular-nums mt-0.5">{r.change}</div>
+          <div class="text-[9px] font-mono text-positive tabular-nums mt-0.5">{r.change}</div>
         </div>
         <span class:list={["text-[9px] px-2 py-0.5 rounded-full border font-medium tracking-wider whitespace-nowrap", r.statusClass]}>{r.status}</span>
       </div>

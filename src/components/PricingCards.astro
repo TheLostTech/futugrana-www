@@ -50,7 +50,7 @@ const t = locale === "it"
 <section class="relative bg-paper px-8 py-28" style="z-index: 25;">
   <div class="max-w-[1200px] mx-auto">
     <div class="text-center mb-16">
-      <h2 class="text-[clamp(28px,3vw,44px)] font-semibold tracking-[-0.03em] leading-tight mb-5 text-ink">{t.title}</h2>
+      <h2 class="font-display font-medium text-[clamp(28px,3vw,44px)] tracking-[-0.01em] leading-tight mb-5 text-ink">{t.title}</h2>
       <p class="text-base text-muted max-w-2xl mx-auto leading-relaxed" set:html={t.sub} />
     </div>
 
@@ -79,7 +79,7 @@ const t = locale === "it"
               <p class:list={["text-sm leading-relaxed", subTextClass]}>{c.sub}</p>
             </div>
             <div class="flex items-baseline gap-1">
-              <span class="text-4xl font-semibold tracking-tight">{c.price}</span>
+              <span class="text-4xl font-semibold tracking-tight tabular-nums">{c.price}</span>
               {!c.isContact && <span class:list={["text-sm font-medium", subTextClass]}>{t.perMonth}</span>}
             </div>
             <ul class:list={["space-y-2.5 flex-1 text-sm leading-relaxed", bulletTextClass]}>

@@ -20,6 +20,7 @@ export function sectionProgress({ rectTop, sectionHeight, viewportHeight }: Sect
 }
 
 export interface PatternAFrame {
+  growT: number;
   cardWidth: number;
   cardHeight: number;
   cardBottom: number;
@@ -51,6 +52,7 @@ export function patternAFrame(progress: number): PatternAFrame {
   const wordRightX = (1 - wordT) * 80;
 
   return {
+    growT,
     cardWidth, cardHeight, cardBottom, cardRadius,
     titleY, titleOpacity,
     wordsOpacity, wordLeftX, wordRightX,

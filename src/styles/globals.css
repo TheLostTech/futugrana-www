@@ -1,36 +1,60 @@
 @import "tailwindcss";
 
+/* Futugrana type system: Playfair Display (serif) for editorial h1/h2 titles
+   (Medium 500 / Black 900 ghost words); Inter for h3, body, UI and numbers.
+   Font strategy: Google Fonts @import (per design-system colors_and_type.css). */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,900&family=Inter:wght@400;500;600;700&display=swap');
+
 @theme {
-  /* Brand */
-  --color-ink: #0F172A;        /* slate-900 — testo principale, dark surfaces, CTA primary */
-  --color-paper: #F8FAFC;      /* slate-50 — main background */
+  /* ---- Brand / core ------------------------------------------------------
+     Navy + gold/sage direction. Deep navy ink, steel-blue secondary,
+     off-white paper. Gold = brand & nobility, sage = positivity. */
+  --color-ink: #0D1B2A;        /* deep navy — primary text, dark surfaces, primary CTA */
+  --color-paper: #F8F9FA;      /* off-white — main background */
+  --color-steel: #415A77;      /* steel blue — secondary text/surfaces, secondary actions */
+  --color-steel-surface: #16293C; /* solid second navy surface on dark */
 
   /* Surfaces */
-  --color-surface: #FFFFFF;    /* cards bianche */
-  --color-elevated: #FCFCFD;   /* sezioni "elevated" leggermente off-white */
+  --color-surface: #FFFFFF;    /* white cards */
+  --color-elevated: #FCFCFD;   /* slightly off-white "elevated" sections */
 
   /* Borders */
-  --color-border: #E2E8F0;     /* bordi soft */
+  --color-border: #E3E7ED;     /* cool soft border + header bar fill */
 
   /* Typography secondary */
-  --color-muted: #64748B;      /* slate-500 — testo secondario */
-  --color-subtle: #94A3B8;     /* slate-400 — testo disabilitato/subtle */
+  --color-muted: #415A77;      /* steel — secondary text */
+  --color-subtle: #8A98AD;     /* lighter steel — disabled / very subtle text */
 
-  /* Single accent: sage. Da usare al 5% max. */
-  --color-accent: #5FA38C;
-  --color-accent-hover: #4B8B76;
-  --color-accent-soft: #EAF4F0;
+  /* ---- Accent: GOLD — brand & nobility. Use sparingly (~5-10% of a view).
+     Wordmark touch, links, featured plan, live-state, funded phase. */
+  --color-accent: #C5A059;
+  --color-accent-hover: #AE8B45;
+  --color-accent-soft: #F4ECDA;   /* pale gold tint — warm tint allowed on light bg */
 
-  /* Alias legacy: i nomi vecchi puntano al nuovo sistema neutro così le classi esistenti
-     (bg-celeste, bg-giallo, bg-viola, ecc.) non rompono e mappano sui giusti toni minimal. */
-  --color-celeste: #FFFFFF;       /* era saturated → ora pure white surface */
-  --color-celeste-2: #0F172A;     /* era saturated blu → ora brand dark */
-  --color-verde-menta: #FCFCFD;   /* era saturated → ora elevated */
-  --color-giallo: #FFFFFF;        /* era saturated → ora pure white */
-  --color-viola: #EAF4F0;         /* era saturated → ora accent-soft (l'unico tocco di colore) */
-  --color-blu: #0F172A;           /* era saturated → ora brand dark */
+  /* ---- Positive: SAGE — positivity / success semantics.
+     Gains & positive amounts, payout / advance-phase buttons, funded/ready. */
+  --color-positive: #5FA38C;
+  --color-positive-hover: #4B8B76;
+  --color-positive-soft: #EAF4F0; /* pale sage tint on light bg */
 
+  /* Alias legacy: i nomi delle scene esistenti puntano al nuovo sistema navy/oro/salvia
+     così le classi attuali (bg-celeste, bg-giallo, bg-viola, ecc.) non rompono.
+     Le scene mantengono il loro ruolo chiaro/scuro, aggiornato alle nuove tinte. */
+  --color-celeste: #FFFFFF;       /* light scene → pure white surface */
+  --color-celeste-2: #0D1B2A;     /* dark scene → brand navy ink */
+  --color-verde-menta: #FCFCFD;   /* light scene → elevated off-white */
+  --color-giallo: #F4ECDA;        /* light tinted scene → soft gold (warm brand tint) */
+  --color-viola: #EAF4F0;         /* light tinted scene → soft sage */
+  --color-blu: #0D1B2A;           /* dark scene → brand navy ink */
+
+  /* ---- Type families ----------------------------------------------------- */
   --font-sans: "Inter", "Helvetica Neue", -apple-system, system-ui, sans-serif;
+  --font-display: "Playfair Display", "Georgia", "Times New Roman", serif;
+
+  /* ---- Elevation --------------------------------------------------------- */
+  --shadow-card: 0 1px 2px rgba(13,27,42,0.04), 0 8px 24px -8px rgba(13,27,42,0.08);
+  --shadow-pop: 0 40px 90px -30px rgba(13,27,42,0.28), 0 12px 30px -12px rgba(13,27,42,0.12);
+  --shadow-device: 0 50px 110px -32px rgba(0,0,0,0.70), 0 22px 50px -22px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
 @layer base {

@@ -12,7 +12,7 @@ const movements = [
         <div class="flex items-center gap-4">
           <span class:list={[
             "text-lg font-semibold w-20 tabular-nums tracking-tight",
-            m.sign === "+" ? "text-accent" : "text-ink/55",
+            m.sign === "+" ? "text-positive" : "text-ink/55",
           ]}>{m.sign}{m.amount}</span>
           <div>
             <div class="text-sm font-medium text-ink">{m.type}</div>
@@ -25,7 +25,7 @@ const movements = [
   </div>
   <div class="bg-ink text-paper rounded-2xl px-6 py-4 flex gap-6 text-sm">
     <span class="text-paper/70">Netto 30 giorni</span>
-    <span class="text-accent font-semibold tabular-nums">€3.148</span>
+    <span class="text-positive font-semibold tabular-nums">€3.148</span>
     <span class="text-paper/20">·</span>
     <span class="text-paper/55">Tasse stimate <span class="tabular-nums">€1.029</span></span>
   </div>

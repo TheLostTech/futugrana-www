@@ -1,14 +1,14 @@
 ---
 const rows = [
-  { name: "APEX-001",    user: "lostar", meta: "CID · 12268", status: "connesso",   pillClass: "bg-accent/10 text-accent border-accent/30",        toggleOn: true },
-  { name: "Lucid Marco", user: "lostar", meta: "CID · 12268", status: "connesso",   pillClass: "bg-accent/10 text-accent border-accent/30",        toggleOn: true },
+  { name: "APEX-001",    user: "lostar", meta: "CID · 12268", status: "connesso",   pillClass: "bg-positive/10 text-positive border-positive/30",        toggleOn: true },
+  { name: "Lucid Marco", user: "lostar", meta: "CID · 12268", status: "connesso",   pillClass: "bg-positive/10 text-positive border-positive/30",        toggleOn: true },
   { name: "Topstep-A",   user: "lostar", meta: "CID · —",      status: "evaluation", pillClass: "bg-white/[0.04] text-paper/55 border-white/15", toggleOn: false },
 ];
 ---
 <div class="flex-1 bg-ink rounded-2xl border border-white/[0.06] overflow-hidden flex flex-col">
   <div class="px-5 pt-4 pb-3 border-b border-white/[0.06]">
     <div class="flex items-center gap-2">
-      <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+      <span class="w-1.5 h-1.5 rounded-full bg-positive"></span>
       <div class="text-[13px] font-semibold text-paper tracking-tight">Configurazione Tradovate</div>
     </div>
     <div class="text-[11px] text-paper/50 mt-1 leading-snug">Provider Futures · API connesse</div>
@@ -32,11 +32,11 @@ const rows = [
           </div>
           <div class:list={[
             "relative w-7 h-3.5 rounded-full transition-colors",
-            r.toggleOn ? "bg-accent/30" : "bg-white/10",
+            r.toggleOn ? "bg-positive/30" : "bg-white/10",
           ]}>
             <div class:list={[
               "absolute top-0.5 w-2.5 h-2.5 rounded-full transition-all",
-              r.toggleOn ? "right-0.5 bg-accent" : "left-0.5 bg-paper/40",
+              r.toggleOn ? "right-0.5 bg-positive" : "left-0.5 bg-paper/40",
             ]}></div>
           </div>
         </div>
