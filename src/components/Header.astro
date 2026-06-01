@@ -1,6 +1,7 @@
 ---
 import { localizeUrl, type Locale } from "../lib/i18n";
 import LanguagePicker from "./LanguagePicker.astro";
+import FgMark from "./FgMark.astro";
 
 interface Props {
   locale: Locale;
@@ -33,7 +34,8 @@ const appUrl = "https://app.futugrana.com";
 ---
 <header class="fixed top-0 inset-x-0 z-50 bg-border border-b border-black/[0.06] px-8 py-4">
   <div class="max-w-[1400px] mx-auto flex items-center justify-between gap-6">
-    <a href={localizeUrl("/", locale)} class="text-[20px] font-semibold tracking-tight text-ink">
+    <a href={localizeUrl("/", locale)} class="inline-flex items-center gap-2.5 text-[20px] font-semibold tracking-tight text-ink hover:opacity-90">
+      <FgMark size={30} class="text-accent" />
       Futugrana
     </a>
 

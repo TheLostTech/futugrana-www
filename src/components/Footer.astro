@@ -1,5 +1,6 @@
 ---
 import LanguagePicker from "./LanguagePicker.astro";
+import FgMark from "./FgMark.astro";
 import { localizeUrl, type Locale } from "../lib/i18n";
 
 interface Props {
@@ -63,6 +64,10 @@ const cols = [t.cols.product, t.cols.forWhom, t.cols.resources, t.cols.partner, 
 ---
 <footer class="bg-paper border-t border-black/8 px-8 py-16 text-ink">
   <div class="max-w-[1400px] mx-auto">
+    <a href={localizeUrl("/", locale)} class="inline-flex items-center gap-2.5 text-[20px] font-semibold tracking-tight text-ink hover:opacity-90 mb-10">
+      <FgMark size={30} class="text-accent" />
+      Futugrana
+    </a>
     <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
       {cols.map((col) => (
         <div>
