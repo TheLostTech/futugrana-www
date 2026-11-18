@@ -8,6 +8,8 @@ interface Props {
   wordLeft: string;
   wordRight: string;
   zIndex: number;
+  /** Hero scene: drives the headline overlay and the Blender sequence. */
+  hero?: boolean;
 }
 const {
   bgClass,
@@ -18,10 +20,12 @@ const {
   wordLeft,
   wordRight,
   zIndex,
+  hero = false,
 } = Astro.props;
 ---
 <section
   data-pattern-a
+  data-hero={hero ? "" : undefined}
   class="relative h-[220vh]"
   style={`z-index: ${zIndex};`}
 >
@@ -61,16 +65,45 @@ const {
       ]}
     >{wordRight}</span>
 
+    <!-- Full-viewport card that grows with transform: scale() (no reflow, the
+         content enlarges as one object). Initial style = state at scroll 0,
+         so the first paint matches before the script runs. -->
     <div
       data-card
-      class="absolute left-1/2 -translate-x-1/2 overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.25)] z-[3]"
-      style="width: 50vw; height: 55vh; bottom: -8%; border-radius: 24px;"
+      class="absolute inset-x-0 bottom-0 h-full overflow-hidden bg-ink origin-bottom z-[3] will-change-transform shadow-[0_60px_120px_-40px_rgba(0,0,0,0.30)] data-[sequence=true]:shadow-none"
+      style="transform: translate3d(0, 8vh, 0) scale(0.5); border-radius: 48px; --tilt: 10deg;"
     >
-      <slot />
+      <div data-card-inner class="w-full h-full">
+        <slot />
+      </div>
     </div>
+
+    {hero && (
+      <canvas
+        data-hero-canvas
+        aria-hidden="true"
+        class="absolute inset-0 w-full h-full z-[3] pointer-events-none"
+        style="visibility: hidden;"
+      ></canvas>
+    )}
   </div>
 </section>
 
 <script>
   import "../scripts/scroll-driver";
 </script>
+
+<style is:global>
+  /* While the Blender hero loads (wide screens, top of the page) the card and
+     the display stay hidden, then fade in: no flat-card-to-3D jump. Set by
+     the inline script in Hero.astro, removed by hero-sequence.ts (or by a
+     timeout, so the card can never stay hidden). */
+  [data-hero] [data-card],
+  [data-hero] canvas {
+    transition: opacity 0.7s ease;
+  }
+  html.hero-seq-pending [data-hero] [data-card],
+  html.hero-seq-pending [data-hero] canvas {
+    opacity: 0;
+  }
+</style>

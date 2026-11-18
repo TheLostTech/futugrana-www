@@ -29,3 +29,6 @@ yarn-error.log*
 playwright-report/
 test-results/
 .vercel
+
+# Blender renders (the published frames live in public/hero-seq)
+blender/out/

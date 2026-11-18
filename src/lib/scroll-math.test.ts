@@ -1,5 +1,8 @@
 import { describe, it, expect } from "vitest";
-import { clamp, lerp, sectionProgress, patternAFrame } from "./scroll-math";
+import {
+  clamp, lerp, sectionProgress, patternAFrame,
+  easeInOutCubic, easeOutCubic, smoothToward, heroOverlayFrame, patternBEntry,
+} from "./scroll-math";
 
 describe("clamp", () => {
   it("returns value within bounds unchanged", () => {
@@ -37,37 +40,104 @@ describe("sectionProgress", () => {
   });
 });
 
+describe("easing", () => {
+  it("easeInOutCubic fixes the endpoints and the midpoint", () => {
+    expect(easeInOutCubic(0)).toBe(0);
+    expect(easeInOutCubic(1)).toBe(1);
+    expect(easeInOutCubic(0.5)).toBeCloseTo(0.5);
+  });
+  it("easeInOutCubic starts slow and ends slow", () => {
+    expect(easeInOutCubic(0.1)).toBeLessThan(0.1);
+    expect(easeInOutCubic(0.9)).toBeGreaterThan(0.9);
+  });
+  it("easeOutCubic starts fast", () => {
+    expect(easeOutCubic(0)).toBe(0);
+    expect(easeOutCubic(1)).toBe(1);
+    expect(easeOutCubic(0.2)).toBeGreaterThan(0.4);
+  });
+});
+
+describe("smoothToward", () => {
+  it("moves part of the way, never overshoots", () => {
+    const v = smoothToward(0, 1, 16, 110);
+    expect(v).toBeGreaterThan(0);
+    expect(v).toBeLessThan(1);
+  });
+  it("after a long pause reaches the target", () => {
+    expect(smoothToward(0, 1, 5000, 110)).toBeCloseTo(1, 5);
+  });
+  it("with tau 0 jumps to the target (reduced motion)", () => {
+    expect(smoothToward(0.2, 0.8, 16, 0)).toBe(0.8);
+  });
+});
+
 describe("patternAFrame", () => {
-  it("at progress 0 → card preview small, growT 0, title visible", () => {
+  it("at progress 0 → card is a half-size preview pushed below the fold", () => {
     const f = patternAFrame(0);
     expect(f.growT).toBe(0);
-    expect(f.cardWidth).toBe(50);
-    expect(f.cardHeight).toBe(55);
-    expect(f.cardBottom).toBe(-8);
-    expect(f.cardRadius).toBe(24);
+    expect(f.scale).toBe(0.5);
+    expect(f.offsetY).toBe(8);
+    expect(f.radius).toBe(24);
+    expect(f.tilt).toBe(10);
     expect(f.titleOpacity).toBe(1);
     expect(f.wordsOpacity).toBe(0);
   });
 
-  it("at progress 0.30 → growT 1, card fully expanded, title still visible", () => {
+  it("grows with ease-in-out, not linearly", () => {
+    const early = patternAFrame(0.03); // 10% of the growth window
+    expect(early.scale - 0.5).toBeLessThan(0.05 * 0.5);
+  });
+
+  it("at progress 0.30 → fully expanded, flat, square corners", () => {
     const f = patternAFrame(0.30);
     expect(f.growT).toBe(1);
-    expect(f.cardWidth).toBe(100);
-    expect(f.cardHeight).toBe(100);
-    expect(f.cardBottom).toBe(0);
-    expect(f.cardRadius).toBe(0);
+    expect(f.scale).toBe(1);
+    expect(f.offsetY).toBe(0);
+    expect(f.radius).toBe(0);
+    expect(f.tilt).toBe(0);
     expect(f.titleOpacity).toBe(1);
   });
 
-  it("at progress 0.65 → words half-faded in (no dead zone in the second half)", () => {
-    const f = patternAFrame(0.65);
-    expect(f.wordsOpacity).toBeCloseTo(0.5, 1);
+  it("words arrive with ease-out in the second part", () => {
+    expect(patternAFrame(0.30).wordsOpacity).toBe(0);
+    expect(patternAFrame(0.65).wordsOpacity).toBeGreaterThan(0.6);
+    expect(patternAFrame(1).wordsOpacity).toBe(1);
   });
 
-  it("at progress 1 → stable fullscreen + words fully visible at end of section", () => {
+  it("at progress 1 → stable fullscreen", () => {
     const f = patternAFrame(1);
-    expect(f.cardWidth).toBe(100);
-    expect(f.wordsOpacity).toBe(1);
+    expect(f.scale).toBe(1);
+    expect(f.wordLeftX).toBe(0);
+    expect(f.wordRightX).toBe(0);
   });
 });
 
+describe("heroOverlayFrame", () => {
+  it("fully visible at the top", () => {
+    const f = heroOverlayFrame(0);
+    expect(f.opacity).toBe(1);
+    expect(f.y).toBe(0);
+    expect(f.visible).toBe(true);
+  });
+  it("gone before the card reaches the text (growth 40%)", () => {
+    const f = heroOverlayFrame(0.4);
+    expect(f.opacity).toBe(0);
+    expect(f.visible).toBe(false);
+    expect(f.y).toBeLessThan(0);
+  });
+  it("fades progressively in between", () => {
+    const f = heroOverlayFrame(0.2);
+    expect(f.opacity).toBeGreaterThan(0);
+    expect(f.opacity).toBeLessThan(1);
+  });
+});
+
+describe("patternBEntry", () => {
+  it("card sits lower while the scene is still entering", () => {
+    expect(patternBEntry(1000, 1000)).toBe(10);
+  });
+  it("card at rest once the scene covers the viewport", () => {
+    expect(patternBEntry(0, 1000)).toBe(0);
+    expect(patternBEntry(-500, 1000)).toBe(0);
+  });
+});
